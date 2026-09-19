@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Jazz Automations — um esquadrão de agentes de IA que opera a sua empresa 24/7. Atende no WhatsApp com voz, qualifica, vende, agenda e cria conteúdo. CRM e agenda inclusos.">
-<meta property="og:title" content="JAZZ.OS — um time de IA que opera sozinho">
-<meta property="og:description" content="Não é um chatbot — é um esquadrão de agentes que opera a sua empresa 24 horas por dia. CRM e agenda inclusos.">
+<meta name="description" content="Jazz Automations — software house de IA. A gente monta o software e as automações que a sua empresa precisa, sob medida, pra cortar custo, agilizar o processo e fazer render mais.">
+<meta property="og:title" content="JAZZ.OS — menos custo, mais lucro">
+<meta property="og:description" content="Software house de IA. Software e automações sob medida — CRM, atendimento no WhatsApp, automação de processo — integrando o que você já usa.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0c0c0c">
 <title>JAZZ.OS</title>
@@ -322,6 +322,26 @@ nav.links a:hover::after{right:0}
 .final .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .final .btn{font-size:16px;padding:13px 24px}
 
+/* lado humano (FDE) */
+.human{padding-block:clamp(50px,8vw,110px);border-top:2px solid var(--line)}
+.human .grid{display:grid;grid-template-columns:1fr;gap:clamp(24px,4vw,48px);align-items:center}
+@media(min-width:860px){.human .grid{grid-template-columns:1.25fr .9fr}}
+.human h2{font-weight:800;letter-spacing:-.04em;line-height:.95;margin:0;font-size:clamp(1.9rem,5vw,3.7rem);text-wrap:balance}
+.human p{margin:16px 0 0;max-width:56ch;font-size:1.05rem;color:var(--ink-2)}
+.human .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.human .card{background:var(--chrome);border:2px solid var(--ink);align-self:start}
+.human .card .tbar{background:var(--ink);color:var(--paper);font-family:"VT323";font-size:18px;padding:3px 8px;display:flex;justify-content:space-between;align-items:center}
+.human .card .tbar i{width:9px;height:9px;background:var(--band);display:inline-block}
+.human .card .tbody{padding:16px}
+.human .card .who{display:flex;gap:13px;align-items:center}
+.human .card .ava{width:58px;height:58px;border:2px solid var(--ink);flex:none;
+  background:radial-gradient(circle at 50% 45%,var(--ink) 1.1px,transparent 1.4px) 0 0/6px 6px,var(--band);
+  -webkit-mask:radial-gradient(circle at 50% 42%,#000 30%,transparent 60%);mask:radial-gradient(circle at 50% 42%,#000 30%,transparent 60%)}
+.human .card .who b{font-family:"Archivo";font-weight:800;font-size:1.05rem;letter-spacing:-.02em;display:block}
+.human .card .who span{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut)}
+.human .card ul{list-style:none;margin:15px 0 0;padding:0;display:grid;gap:6px;font-family:"JetBrains Mono";font-size:12px;color:var(--ink-2)}
+.human .card li::before{content:"› ";color:var(--green-txt)}
+
 footer{border-top:2px solid var(--ink);padding-block:28px 40px}
 footer .row{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
 footer .fbrand{font-weight:800;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
@@ -351,10 +371,10 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   <div class="wrap row">
     <div class="brand"><span class="dot"></span><span class="full">JAZZ&nbsp;AUTOMATIONS</span><span class="os">/OS.1</span></div>
     <nav class="links">
-      <a href="#manifesto">Manifesto</a>
-      <a href="#capacidades">Capacidades</a>
+      <a href="#como">Como funciona</a>
+      <a href="#capacidades">O que faz</a>
+      <a href="#humano">Sobre</a>
       <a href="#corrida">Corrida</a>
-      <a href="#casos">Casos</a>
     </nav>
     <div class="nav-cta">
       <a class="btn ghost" href="#entrar">Entrar</a>
@@ -379,25 +399,25 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   </section>
 
   <section class="headline wrap">
-    <h1><span id="hl1">Um time de IA que </span><span class="g" id="hl2">opera sozinho.</span></h1>
-    <p class="lead">Não é um chatbot — é um <b>esquadrão de agentes</b> que atende no WhatsApp com voz, qualifica, vende e entrega. Roda o seu CRM e a sua agenda, cria conteúdo e monta novos agentes sob demanda. A sua operação <b>24 horas por dia</b>, sem contratar mais ninguém.</p>
+    <h1><span id="hl1">Menos custo, menos esforço. </span><span class="g" id="hl2">Mais lucro.</span></h1>
+    <p class="lead">A Jazz é uma <b>software house de IA</b>. A gente instala o software e as automações que a sua empresa precisa — <b>sob medida</b>, do jeito da sua operação — pra cortar custo, agilizar o processo e fazer render mais. Sem depender de papel, de planilha, ou de um sistema gigante que você usa 10%.</p>
     <div class="cta-links">
-      <a href="#entrar">Implantar o time</a>
+      <a href="#entrar">Implantar na empresa</a>
       <a class="wa" href="https://wa.me/5511910376040" target="_blank" rel="noopener">Falar no WhatsApp</a>
     </div>
-    <div class="note"><b>SQUAD</b><span>A Jazz monta um esquadrão de agentes sob medida e liga direto no seu WhatsApp — CRM e agenda inclusos.</span></div>
+    <div class="note"><b>SOB MEDIDA</b><span>Software e automações feitos pro seu caso — integrando o que você já usa, sem mensalidade de função que você nem abre.</span></div>
   </section>
 
   <section class="stat wrap">
-    <h2 class="rv">Um time inteiro.<br>Num <span class="g" style="color:var(--green-txt)">só agente.</span></h2>
-    <div class="cap rv d1">*atende, qualifica, vende, agenda e produz — 24/7, sem faltar, sem pedir aumento — <a href="#corrida">(veja a corrida)</a></div>
+    <h2 class="rv">Você paga por sistema gigante.<br>E usa <span class="g" style="color:var(--green-txt)">10% dele.</span></h2>
+    <div class="cap rv d1">*a Jazz faz o software sob medida — só o que o seu caso precisa, integrando o que você já usa — <a href="#como">(como funciona)</a></div>
   </section>
 
   <section id="capacidades" class="sec-head wrap">
-    <h2 class="rv">Não é um chatbot. É um time inteiro.</h2>
-    <p class="rv d1">Cada janela é um agente do seu esquadrão. Arrasta, abre, fecha — é a sua operação rodando na mesa.</p>
+    <h2 class="rv">O software se molda à sua operação. Não o contrário.</h2>
+    <p class="rv d1">Cada janela é uma peça que a Jazz liga pro seu caso: CRM sob medida, automação de processo, atendimento no WhatsApp com voz. Arrasta, abre, fecha — é a sua operação rodando na mesa.</p>
     <div class="hero-pills rv d2">
-      <b>Atende no WhatsApp</b><b>Qualifica e vende</b><b>Marca a reunião</b><b>Roda o CRM</b><b>Cria conteúdo</b><b>Monta novos agentes</b>
+      <b>CRM sob medida</b><b>Automação de processo</b><b>Atende no WhatsApp</b><b>Tira do papel e do Excel</b><b>Integra o que você usa</b><b>Cria conteúdo</b>
     </div>
   </section>
 
@@ -546,35 +566,59 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
       </div>
       <div class="cell rv d2">
         <span class="k pix">03</span>
-        <h3>Um esquadrão sob medida.</h3>
-        <p>Voz, CRM, agenda, conteúdo, web. A gente monta o time com as funções que o seu caso pede — e liga mais agentes quando você cresce.</p>
+        <h3>Sob medida, não de prateleira.</h3>
+        <p>Você não paga por função que não usa. A gente monta só o que o seu caso pede, integra o que você já tem — e liga mais quando a empresa cresce.</p>
         <div class="foot">// compõe, não incha</div>
       </div>
     </div>
   </section>
 
-  <section class="how wrap">
-    <div class="sec-head" style="padding-bottom:clamp(18px,3vw,34px)"><h2 class="rv">Como o time entra.</h2></div>
+  <section class="how wrap" id="como">
+    <div class="sec-head" style="padding-bottom:clamp(18px,3vw,34px)"><h2 class="rv">Como a Jazz entra.</h2></div>
     <div class="steps">
-      <div class="step rv"><span class="n pix">01</span><h3>Você conta a operação.</h3><p>15 minutos no WhatsApp. A gente entende o que trava e o que dá pra automatizar primeiro.</p><div class="tag">// diagnóstico</div></div>
-      <div class="step rv d1"><span class="n pix">02</span><h3>A gente monta o esquadrão.</h3><p>Clona a voz, liga os agentes certos e conecta CRM e agenda. Você aprova antes de subir.</p><div class="tag">// implantação</div></div>
-      <div class="step rv d2"><span class="n pix">03</span><h3>A operação roda 24/7.</h3><p>O time atende, qualifica, vende e agenda sozinho. Você acompanha os resultados caindo.</p><div class="tag">// no ar</div></div>
+      <div class="step rv"><span class="n pix">01</span><h3>A gente senta com você.</h3><p>15 minutos pra entender o seu processo, o que trava e onde dá pra cortar custo primeiro.</p><div class="tag">// diagnóstico</div></div>
+      <div class="step rv d1"><span class="n pix">02</span><h3>Montamos o software sob medida.</h3><p>CRM, automação, atendimento no WhatsApp — só o que o seu caso pede, integrando o que você já usa. Você aprova antes de subir.</p><div class="tag">// sob medida</div></div>
+      <div class="step rv d2"><span class="n pix">03</span><h3>Você corta custo e ganha tempo.</h3><p>Roda sozinho, do seu jeito. Você acompanha o resultado — menos esforço, mais lucro.</p><div class="tag">// no ar</div></div>
     </div>
   </section>
 
   <section id="casos" class="proof" aria-label="Provas">
     <div class="track" id="ptrack">
-      <span>Opera a sua empresa 24/7</span>
-      <span>Atende no WhatsApp com voz clonada</span>
-      <span>CRM e agenda inclusos</span>
-      <span>Qualifica, vende e marca a reunião</span>
+      <span>Software sob medida, feito pro seu caso</span>
+      <span>Corta custo e agiliza o processo</span>
+      <span>Integra o que você já usa</span>
+      <span>Atende no WhatsApp com voz</span>
       <span>1º lugar — Hackathon Oracle 2026</span>
     </div>
   </section>
 
+  <section class="human wrap" id="humano">
+    <div class="grid">
+      <div class="rv">
+        <h2>Tem gente de verdade atrás do software.</h2>
+        <p>A Jazz não te joga um sistema e some. Quem entra é o Felipe — engenheiro que senta com você, entende a sua operação de dentro e traduz o técnico pra língua de negócio. Fica no loop até a coisa rodar e dar resultado. É a filosofia de implantar junto: a gente resolve <b>com</b> você, não pra você olhar de longe.</p>
+        <div class="row">
+          <a class="btn solid" href="https://wa.me/5511910376040" target="_blank" rel="noopener">Falar com o Felipe →</a>
+          <a class="btn" href="https://felipesalvego.vercel.app" target="_blank" rel="noopener">Conhecer o Felipe</a>
+        </div>
+      </div>
+      <div class="card rv d1" aria-label="Perfil do Felipe">
+        <div class="tbar"><span>FELIPE.humano</span><i aria-hidden="true"></i></div>
+        <div class="tbody">
+          <div class="who"><div class="ava" aria-hidden="true"></div><div><b>Felipe Salvego</b><span>engenheiro · Jazz Automations</span></div></div>
+          <ul>
+            <li>senta com você pra entender a operação</li>
+            <li>traduz o técnico pra língua de negócio</li>
+            <li>fica no loop até dar resultado</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="entrar" class="final wrap">
-    <h2 class="rv">Implanta o time. Hoje.</h2>
-    <p class="sub rv d1">A gente clona a voz, monta o esquadrão e liga tudo no seu WhatsApp — com CRM e agenda inclusos. Você assiste a sua operação começar a rodar sozinha. Sem contratar mais ninguém.</p>
+    <h2 class="rv">Menos custo. Começa hoje.</h2>
+    <p class="sub rv d1">A gente senta com você, monta o software sob medida e liga tudo — CRM, automação, atendimento. Você acompanha a operação começar a render. Sem pagar por sistema que você não usa.</p>
     <div class="row rv d2">
       <a id="falar" class="btn solid" href="https://wa.me/5511910376040" target="_blank" rel="noopener">Falar com a Jazz →</a>
       <a class="btn" href="#capacidades">Ver as capacidades</a>
@@ -613,8 +657,8 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
     },delay||0);
   }
   (function(){var a=document.getElementById('hl1'),b=document.getElementById('hl2');
-    if(a)scramble(a,'Um time de IA que ',620,120);
-    if(b)scramble(b,'opera sozinho.',780,420);})();
+    if(a)scramble(a,'Menos custo, menos esforço. ',620,120);
+    if(b)scramble(b,'Mais lucro.',780,420);})();
 
   /* boot: system log + progress */
   var fill=document.getElementById('bootfill'),pct=document.getElementById('bootpct'),boot=document.getElementById('boot'),blog=document.getElementById('blog');
@@ -855,7 +899,7 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
     function botSay(txt,after){var t=document.createElement('div');t.className='m bot typing';t.innerHTML='<span></span><span></span><span></span>';box.appendChild(t);box.scrollTop=box.scrollHeight;
       setTimeout(function(){t.remove();var d=bubble('bot','');var i=0;(function ty(){d.textContent=txt.slice(0,i++);box.scrollTop=box.scrollHeight;if(i<=txt.length)setTimeout(ty,12);else if(after)after();})();},640+Math.random()*460);}
     var FLOW={
-      preco:{r:'Sai perto de R$0,21 por conversa qualificada — contra ~R$6,20 de um atendente humano. Me diz quantos atendimentos por dia você tem que eu fecho a conta e já marco 15 min.',c:[M('reuniao'),M('falar')]},
+      preco:{r:'Não é mensalidade de sistema gigante — a gente monta só o que o seu caso precisa e cobra por projeto. Me diz o que trava hoje que eu já te passo um caminho e marco 15 min.',c:[M('reuniao'),M('falar')]},
       reuniao:{r:'Fechado. Tenho quinta 15h ou sexta 10h. Qual encaixa? Eu confirmo, jogo na agenda e te lembro no dia.',act:function(){openId('w-agenda');},c:[M('preco'),M('falar')]},
       voz:{r:'Respondo em áudio com voz clonada em pt-BR — soa como gente, não como robô de menu. Abre a VOZ.app aí do lado que eu te mostro.',act:function(){openId('w-voz');},c:[M('reuniao'),M('falar')]},
       crm:{r:'Puxo o lead pro CRM, qualifico, etiqueto e movo no funil sozinho. Vou abrir o CRM.db pra você ver rodando.',act:function(){openId('w-crm');},c:[M('reuniao'),M('falar')]},
@@ -915,7 +959,7 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
     var CMD={
       ajuda:function(){return 'comandos: ajuda · sobre · voz · crm · agenda · corrida · casos · chat · falar · limpar';},
       help:function(){return CMD.ajuda();},
-      sobre:function(){return 'JAZZ.OS 1.1 — um esquadrão de agentes que opera a sua empresa 24/7. Atende, qualifica, vende, agenda e produz.';},
+      sobre:function(){return 'JAZZ.OS 1.1 — software house de IA. Software e automações sob medida que cortam custo e agilizam a sua operação.';},
       voz:function(){openId('w-voz');return 'VOZ.app — voz clonada pt-BR, responde em áudio em &lt;2s.';},
       crm:function(){openId('w-crm');return 'abrindo CRM.db — qualifica, etiqueta e move o lead sozinho.';},
       custo:function(){openId('w-custo');return 'abrindo CUSTO.chart…';},
