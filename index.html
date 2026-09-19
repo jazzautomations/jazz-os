@@ -437,7 +437,7 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
         <div class="tbody">
           <div class="avatar" aria-hidden="true"></div>
           <div class="big">VOZ</div>
-          <div class="desc">Voz clonada, pt-BR. Responde em áudio com entonação de gente — não robô de menu.</div>
+          <div class="desc">Atende por voz, pt-BR. Responde em áudio que soa como gente — não robô de menu.</div>
           <div class="chips"><b>áudio</b><b>entonação</b><b>&lt;2s</b></div>
         </div>
       </div>
@@ -663,7 +663,7 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   /* boot: system log + progress */
   var fill=document.getElementById('bootfill'),pct=document.getElementById('bootpct'),boot=document.getElementById('boot'),blog=document.getElementById('blog');
   function setBoot(p){fill.style.right=(100-p)+'%';pct.textContent=Math.round(p)+'%';}
-  var BOOT=[['JAZZ.OS 1.1 — inicializando',''],['montando o esquadrão','ok'],['clonando voz (pt-BR)','ok'],
+  var BOOT=[['JAZZ.OS 1.1 — inicializando',''],['montando o esquadrão','ok'],['ativando atendimento por voz','ok'],
     ['conectando WhatsApp Business','ok'],['carregando CRM + agenda','ok'],['PRONTO. bom dia, chefe.','done']];
   function paintLog(n){var h='';for(var i=0;i<n;i++){var L=BOOT[i];
     if(L[1]==='done')h+='<div class="done">'+L[0]+'</div>';
@@ -901,7 +901,7 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
     var FLOW={
       preco:{r:'Não é mensalidade de sistema gigante — a gente monta só o que o seu caso precisa e cobra por projeto. Me diz o que trava hoje que eu já te passo um caminho e marco 15 min.',c:[M('reuniao'),M('falar')]},
       reuniao:{r:'Fechado. Tenho quinta 15h ou sexta 10h. Qual encaixa? Eu confirmo, jogo na agenda e te lembro no dia.',act:function(){openId('w-agenda');},c:[M('preco'),M('falar')]},
-      voz:{r:'Respondo em áudio com voz clonada em pt-BR — soa como gente, não como robô de menu. Abre a VOZ.app aí do lado que eu te mostro.',act:function(){openId('w-voz');},c:[M('reuniao'),M('falar')]},
+      voz:{r:'Respondo em áudio, em pt-BR, com voz natural — soa como gente, não como robô de menu. Abre a VOZ.app aí do lado que eu te mostro.',act:function(){openId('w-voz');},c:[M('reuniao'),M('falar')]},
       crm:{r:'Puxo o lead pro CRM, qualifico, etiqueto e movo no funil sozinho. Vou abrir o CRM.db pra você ver rodando.',act:function(){openId('w-crm');},c:[M('reuniao'),M('falar')]},
       falar:{r:'É nós. Te jogo pro WhatsApp agora — de lá eu assumo e já começo a qualificar.',act:function(){setTimeout(function(){window.open('https://wa.me/5511910376040','_blank','noopener');},600);},c:[M('preco'),M('reuniao')]}
     };
@@ -960,7 +960,7 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
       ajuda:function(){return 'comandos: ajuda · sobre · voz · crm · agenda · corrida · casos · chat · falar · limpar';},
       help:function(){return CMD.ajuda();},
       sobre:function(){return 'JAZZ.OS 1.1 — software house de IA. Software e automações sob medida que cortam custo e agilizam a sua operação.';},
-      voz:function(){openId('w-voz');return 'VOZ.app — voz clonada pt-BR, responde em áudio em &lt;2s.';},
+      voz:function(){openId('w-voz');return 'VOZ.app — atende por voz em pt-BR, responde em áudio em &lt;2s.';},
       crm:function(){openId('w-crm');return 'abrindo CRM.db — qualifica, etiqueta e move o lead sozinho.';},
       custo:function(){openId('w-custo');return 'abrindo CUSTO.chart…';},
       agenda:function(){openId('w-agenda');return 'AGENDA.sys — marco, confirmo e lembro.';},
