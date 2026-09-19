@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Jazz Automations — a agência que roda sozinha. Agentes de IA que atendem no WhatsApp com voz clonada, qualificam, rodam o CRM e marcam a reunião.">
 <meta property="og:title" content="JAZZ.OS — Jazz Automations">
-<meta property="og:description" content="Agentes que fazem o trabalho, não que dão dica de trabalho. Atendem no WhatsApp com voz clonada e marcam a reunião sozinhos.">
+<meta property="og:description" content="Agentes que fazem o trabalho, não que dão dica de trabalho. Um desktop interativo: chat com o agente, terminal, e a mesa que roda sozinha.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0c0c0c">
 <title>JAZZ.OS</title>
@@ -123,7 +123,7 @@ nav.links a:hover::after{right:0}
   -webkit-mask:radial-gradient(circle at 78% 78%,#000 0,#000 30%,transparent 62%);mask:radial-gradient(circle at 78% 78%,#000 0,#000 30%,transparent 62%)}
 .desk .h2{left:-30px;top:20%;width:min(28vw,300px);height:min(28vw,300px);
   -webkit-mask:radial-gradient(circle at 22% 40%,#000 0,#000 26%,transparent 56%);mask:radial-gradient(circle at 22% 40%,#000 0,#000 26%,transparent 56%)}
-.desk-inner{position:relative;min-height:680px;padding:20px var(--gut) 52px}
+.desk-inner{position:relative;min-height:740px;padding:20px var(--gut) 52px}
 .desk-tag{font-family:"VT323";font-size:20px;background:var(--ink);color:var(--band);display:inline-block;padding:1px 9px;margin-bottom:6px;letter-spacing:.04em}
 .hint{position:absolute;right:var(--gut);top:22px;font-family:"JetBrains Mono";font-size:11px;color:var(--ink-2);opacity:.8}
 
@@ -213,6 +213,46 @@ nav.links a:hover::after{right:0}
 /* double-click to maximize */
 .app.max{left:8px!important;top:8px!important;right:8px!important;bottom:42px!important;width:auto!important;height:auto!important;box-shadow:var(--shadow)}
 .app.max .tbody{max-height:none}
+
+/* interactive chat app */
+.chat{width:302px;display:flex;flex-direction:column}
+.chat .tbody{padding:0;flex:1;min-height:0;display:flex;flex-direction:column}
+.chat .msgs{flex:1;min-height:120px;max-height:230px;overflow-y:auto;padding:10px 11px;display:flex;flex-direction:column;gap:7px;font-size:12px;line-height:1.4}
+.chat .m{max-width:88%;padding:6px 9px;border:1.5px solid var(--ink)}
+.chat .m.user{align-self:flex-end;background:var(--band)}
+.chat .m.bot{align-self:flex-start;background:var(--paper)}
+.chat .m.typing{color:var(--mut);font-style:italic}
+.chat form{display:flex;border-top:2px solid var(--ink)}
+.chat input{flex:1;min-width:0;border:0;padding:8px 10px;font-family:"JetBrains Mono";font-size:12px;background:var(--paper);color:var(--ink)}
+.chat input:focus{outline:0}
+.chat .send{border:0;border-left:2px solid var(--ink);background:var(--ink);color:var(--band);padding:0 12px;cursor:pointer;display:grid;place-items:center}
+.chat .send:hover{background:var(--green-txt)}
+.chat .send svg{display:block}
+
+/* interactive shell app */
+.shell{width:342px;display:flex;flex-direction:column}
+.shell .tbody{padding:0;flex:1;min-height:0;background:var(--ink);color:var(--band);display:flex;flex-direction:column}
+.shell .out{flex:1;min-height:120px;max-height:220px;overflow-y:auto;padding:10px 11px;font-size:12px;line-height:1.55;white-space:pre-wrap;word-break:break-word}
+.shell .out a{color:var(--green-hi);text-decoration:underline;cursor:pointer}
+.shell form{display:flex;align-items:center;gap:7px;border-top:1px solid #1c4a35;padding:7px 10px}
+.shell .ps1{color:var(--green-hi);font-size:12px;flex:none}
+.shell input{flex:1;min-width:0;background:transparent;border:0;color:var(--band);font-family:"JetBrains Mono";font-size:12px}
+.shell input:focus{outline:0}
+.shell .cur{background:var(--band)}
+
+/* resize grip */
+.grip{position:absolute;right:0;bottom:0;width:16px;height:16px;cursor:nwse-resize;z-index:5;touch-action:none;
+  background:linear-gradient(135deg,transparent 0 46%,var(--ink) 46% 54%,transparent 54% 68%,var(--ink) 68% 78%,transparent 78%)}
+.shell .grip{background:linear-gradient(135deg,transparent 0 46%,var(--band) 46% 54%,transparent 54% 68%,var(--band) 68% 78%,transparent 78%)}
+
+/* desktop context menu */
+.ctxmenu{position:fixed;z-index:10001;background:var(--ink);color:var(--band);border:2px solid var(--band);min-width:190px;
+  font-family:"JetBrains Mono";font-size:12px;box-shadow:var(--shadow)}
+.ctxmenu .hd{font-family:"VT323";font-size:16px;padding:5px 12px;border-bottom:1px solid #1c4a35;letter-spacing:.03em}
+.ctxmenu button{display:block;width:100%;text-align:left;background:transparent;border:0;color:var(--band);padding:8px 12px;cursor:pointer;border-bottom:1px solid #1c4a35;font:inherit}
+.ctxmenu button:last-child{border-bottom:0}
+.ctxmenu button:hover{background:var(--band);color:var(--ink)}
+.snapguide{position:absolute;background:var(--green-hi);opacity:.5;pointer-events:none;z-index:9998}
 
 /* manifesto / bento */
 .mani{padding-block:clamp(40px,6vw,90px) clamp(56px,9vw,120px)}
@@ -367,6 +407,28 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
           <div id="cdate">—</div>
           <div class="time" id="ctime">--:--:--</div>
           <div style="color:var(--mut)">America/Sao_Paulo</div>
+        </div>
+      </div>
+
+      <div class="app window chat" id="w-chat" data-title="CHAT.wa" style="left:25%;top:300px">
+        <div class="tbar"><span class="title">CHAT.wa</span><span class="ctl"><button class="min" aria-label="Minimizar Chat">–</button><button class="cls" aria-label="Fechar Chat">×</button></span></div>
+        <div class="tbody">
+          <div class="msgs" id="chatmsgs"></div>
+          <form id="chatform" autocomplete="off">
+            <input id="chatin" placeholder="escreve pro agente..." aria-label="Mensagem para o agente" maxlength="140">
+            <button class="send" type="submit" aria-label="Enviar"><svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true"><path d="M2 7.5h9M7.5 3.5l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="app window shell" id="w-term" data-title="TERMINAL.exe" style="right:2%;top:300px">
+        <div class="tbar"><span class="title">TERMINAL.exe</span><span class="ctl"><button class="min" aria-label="Minimizar Terminal">–</button><button class="cls" aria-label="Fechar Terminal">×</button></span></div>
+        <div class="tbody">
+          <div class="out" id="shellout"></div>
+          <form id="shellform" autocomplete="off">
+            <span class="ps1">jazz@os:~$</span>
+            <input id="shellin" aria-label="Comando" spellcheck="false" autocapitalize="off">
+          </form>
         </div>
       </div>
 
@@ -567,10 +629,24 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   });
   refreshTabs();
 
+  /* helpers used by shell + context menu */
+  function openId(id){var a=document.getElementById(id);if(a&&WM[a.id])openApp(a,true);}
+  function reopenAll(){apps.forEach(function(a){var w=WM[a.id];a.classList.remove('max');a.style.left=w.home.left;a.style.top=w.home.top;a.style.right=w.home.right;a.style.width='';a.style.height='';openApp(a,false);});if(apps[0])focusApp(apps[0]);}
+  function tile(){var op=apps.filter(function(a){return WM[a.id].state==='open';});if(!op.length)return;
+    var dr=desk.getBoundingClientRect(),pad=14,cols=Math.min(op.length,Math.max(1,Math.floor((dr.width-pad)/(280+pad)))),
+        cw=(dr.width-pad*(cols+1))/cols;
+    op.forEach(function(a,i){a.classList.remove('max');var r=Math.floor(i/cols),c=i%cols;
+      a.style.right='auto';a.style.left=Math.round(pad+c*(cw+pad))+'px';a.style.top=(pad+r*196)+'px';
+      a.style.width=Math.round(Math.min(cw,320))+'px';a.style.height='';focusApp(a);});}
+
+  /* start CRM + CUSTO minimized to keep the desk clean */
+  ['w-crm','w-custo'].forEach(function(id){var a=document.getElementById(id);if(a){WM[id].state='min';a.classList.add('closed');}});
+  refreshTabs();
+
   /* boot reveal windows onto the desktop */
-  if(!reduce)apps.forEach(function(a,i){a.style.opacity=0;
+  if(!reduce)apps.forEach(function(a,i){if(WM[a.id].state!=='open')return;a.style.opacity=0;
     a.animate([{opacity:0,transform:'translateY(16px) scale(.985)'},{opacity:1,transform:'none'}],
-      {duration:520,delay:900+i*110,easing:'cubic-bezier(.12,.23,.5,1)',fill:'forwards'});});
+      {duration:520,delay:900+i*100,easing:'cubic-bezier(.12,.23,.5,1)',fill:'forwards'});});
 
   /* start menu */
   var start=document.getElementById('start'),menu=document.getElementById('startmenu');
@@ -579,9 +655,7 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   start.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();setMenu(menu.hidden);}});
   document.addEventListener('click',function(e){if(!menu.hidden&&!menu.contains(e.target)&&e.target!==start)setMenu(false);});
   menu.addEventListener('click',function(e){var t=e.target.closest('a');if(t)setMenu(false);});
-  document.getElementById('reopen-all').addEventListener('click',function(e){e.preventDefault();
-    apps.forEach(function(a,i){var w=WM[a.id];a.style.left=w.home.left;a.style.top=w.home.top;a.style.right=w.home.right;openApp(a,false);});
-    if(apps[0])focusApp(apps[0]);});
+  document.getElementById('reopen-all').addEventListener('click',function(e){e.preventDefault();reopenAll();});
 
   /* race terminals */
   var jz=document.getElementById('raceJazz'),od=document.getElementById('raceOld'),
@@ -661,6 +735,97 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
       if(h2)h2.style.transform='translate('+px*-32+'px,'+py*-32+'px)';});}
     apps.forEach(function(a){var bar=a.querySelector('.tbar');if(!bar)return;
       bar.addEventListener('dblclick',function(e){if(e.target.closest('.ctl'))return;a.classList.toggle('max');});});
+  })();
+
+  /* ===== edge snap on release ===== */
+  apps.forEach(function(a){var bar=a.querySelector('.tbar');if(!bar)return;
+    bar.addEventListener('pointerup',function(){if(a.classList.contains('max'))return;
+      var dr=desk.getBoundingClientRect(),r=a.getBoundingClientRect(),TH=18;
+      if(r.left-dr.left<TH){a.style.left='6px';a.style.right='auto';}
+      else if(dr.right-r.right<TH){a.style.left='auto';a.style.right='6px';}
+      if(r.top-dr.top<TH){a.style.top='6px';}
+    });});
+
+  /* ===== resize grips (chat + terminal) ===== */
+  ['w-chat','w-term'].forEach(function(id){var a=document.getElementById(id);if(!a)return;
+    var g=document.createElement('div');g.className='grip';a.appendChild(g);
+    var rw,rh,sx,sy,on=false;
+    g.addEventListener('pointerdown',function(e){on=true;var r=a.getBoundingClientRect();rw=r.width;rh=r.height;sx=e.clientX;sy=e.clientY;
+      focusApp(a);try{g.setPointerCapture(e.pointerId);}catch(_){}e.stopPropagation();e.preventDefault();});
+    g.addEventListener('pointermove',function(e){if(!on)return;
+      a.style.width=Math.max(230,Math.min(520,rw+(e.clientX-sx)))+'px';
+      a.style.height=Math.max(190,Math.min(460,rh+(e.clientY-sy)))+'px';});
+    function end(e){on=false;try{g.releasePointerCapture(e.pointerId);}catch(_){}}
+    g.addEventListener('pointerup',end);g.addEventListener('pointercancel',end);});
+
+  /* ===== interactive agent chat ===== */
+  (function(){var box=document.getElementById('chatmsgs'),form=document.getElementById('chatform'),inp=document.getElementById('chatin');
+    if(!form)return;
+    function add(cls,txt){var d=document.createElement('div');d.className='m '+cls;d.textContent=txt;box.appendChild(d);box.scrollTop=box.scrollHeight;return d;}
+    var turn=0;
+    function reply(u){u=(u||'').toLowerCase();
+      if(/pre[çc]o|valor|quanto|custa|plano/.test(u))return 'Depende do que você quer que eu resolva. Quantos atendimentos por dia, em quantos números? Já te trago proposta e marco 15 min com o time.';
+      if(/reuni|agenda|hor[áa]rio|marca|call|demo/.test(u)){openId('w-agenda');return 'Fechado. Tenho quinta 15h ou sexta 10h. Qual encaixa? Eu confirmo, coloco na agenda e te lembro no dia.';}
+      if(/voz|[áa]udio/.test(u)){openId('w-voz');return 'Respondo em áudio com voz clonada em pt-BR — soa como gente, não robô de menu. Quer um exemplo?';}
+      if(/crm|lead|funil/.test(u)){openId('w-crm');return 'Puxo o lead pro CRM, qualifico e etiqueto sozinho. Te mostro o funil rodando?';}
+      if(/oi|ol[áa]|bom dia|boa tarde|e a[íi]|opa/.test(u))return 'Opa! Sou o agente da Jazz. Atendo, qualifico e já marco a reunião. O que você quer resolver hoje?';
+      if(/obrigad|valeu|show|top/.test(u))return 'É nós. Quando quiser, é só chamar no WhatsApp que eu assumo daqui.';
+      turn++;var g=['Entendi. Me dá mais um detalhe que eu já qualifico e te encaminho.',
+        'Boa. Isso eu resolvo — qualifico agora e marco uma conversa rápida. Pode ser?',
+        'Anotado. Quer que eu já reserve um horário com o time da Jazz?'];return g[turn%g.length];}
+    function botReply(u){var t=add('bot typing','o agente está digitando…');var r=reply(u);
+      setTimeout(function(){t.remove();var d=add('bot','');var i=0;(function ty(){d.textContent=r.slice(0,i++);box.scrollTop=box.scrollHeight;if(i<=r.length)setTimeout(ty,13);})();},650+Math.random()*450);}
+    form.addEventListener('submit',function(e){e.preventDefault();var v=inp.value.trim();if(!v)return;add('user',v);inp.value='';botReply(v);});
+    add('bot','Opa! Sou o agente da Jazz. Pergunta o preço, pede um horário, ou manda "quero voz".');
+  })();
+
+  /* ===== interactive shell ===== */
+  (function(){var out=document.getElementById('shellout'),form=document.getElementById('shellform'),inp=document.getElementById('shellin');
+    if(!form)return;
+    function line(html){var d=document.createElement('div');d.innerHTML=html;out.appendChild(d);out.scrollTop=out.scrollHeight;}
+    var CMD={
+      ajuda:function(){return 'comandos: ajuda · sobre · voz · crm · agenda · corrida · casos · chat · falar · limpar';},
+      help:function(){return CMD.ajuda();},
+      sobre:function(){return 'JAZZ.OS 1.1 — a agência que roda sozinha. Agentes que atendem, qualificam e marcam a reunião.';},
+      voz:function(){openId('w-voz');return 'VOZ.app — voz clonada pt-BR, responde em áudio em &lt;2s.';},
+      crm:function(){openId('w-crm');return 'abrindo CRM.db — qualifica, etiqueta e move o lead sozinho.';},
+      custo:function(){openId('w-custo');return 'abrindo CUSTO.chart…';},
+      agenda:function(){openId('w-agenda');return 'AGENDA.sys — marco, confirmo e lembro.';},
+      chat:function(){openId('w-chat');return 'abrindo o chat do agente — pode falar com ele.';},
+      corrida:function(){location.hash='#corrida';return 'rolando pra corrida…';},
+      casos:function(){return '1º lugar no Hackathon Oracle 2026 · agente no ar em zap.jazzautomations.com.br';},
+      falar:function(){window.open('https://wa.me/5511910376040','_blank','noopener');return 'abrindo o WhatsApp…';},
+      whoami:function(){return 'chefe.';},
+      limpar:function(){out.innerHTML='';return '';},
+      clear:function(){out.innerHTML='';return '';}
+    };
+    function run(raw){var c=(raw||'').trim().toLowerCase();if(!c)return;
+      line('<span class="ps1">jazz@os:~$</span> '+esc(raw));
+      var fn=CMD[c];if(fn){var r=fn();if(r)line(r);}
+      else line('comando não encontrado: '+esc(c)+' — digite <a data-cmd="ajuda">ajuda</a>');}
+    form.addEventListener('submit',function(e){e.preventDefault();run(inp.value);inp.value='';});
+    out.addEventListener('click',function(e){var a=e.target.closest('[data-cmd]');if(a){run(a.getAttribute('data-cmd'));inp.focus();}});
+    line('JAZZ.OS shell v1.1 — digite <a data-cmd="ajuda">ajuda</a>');
+  })();
+
+  /* ===== desktop right-click menu ===== */
+  (function(){var menu=null;
+    function close(){if(menu){menu.remove();menu=null;}}
+    function item(label,fn){var b=document.createElement('button');b.textContent=label;b.addEventListener('click',function(){close();fn();});return b;}
+    desk.addEventListener('contextmenu',function(e){if(e.target.closest('.app')||e.target.closest('.taskbar'))return;
+      e.preventDefault();close();menu=document.createElement('div');menu.className='ctxmenu';
+      var hd=document.createElement('div');hd.className='hd';hd.textContent='JAZZ.OS';menu.appendChild(hd);
+      menu.appendChild(item('Abrir chat do agente',function(){openId('w-chat');}));
+      menu.appendChild(item('Novo terminal',function(){openId('w-term');}));
+      menu.appendChild(item('Organizar janelas',tile));
+      menu.appendChild(item('Reabrir tudo',reopenAll));
+      menu.appendChild(item('Falar no WhatsApp',function(){window.open('https://wa.me/5511910376040','_blank','noopener');}));
+      document.body.appendChild(menu);
+      var mw=menu.offsetWidth,mh=menu.offsetHeight;
+      menu.style.left=Math.min(e.clientX,innerWidth-mw-6)+'px';
+      menu.style.top=Math.min(e.clientY,innerHeight-mh-6)+'px';});
+    document.addEventListener('click',close);document.addEventListener('scroll',close,true);
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
   })();
 })();
 </script>
