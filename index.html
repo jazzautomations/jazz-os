@@ -93,10 +93,27 @@ nav.links a:hover::after{right:0}
 .bar em{position:absolute;inset:0;display:grid;place-items:center;font-style:normal;font-size:11px;mix-blend-mode:difference;color:#fff}
 
 .headline{padding-block:clamp(18px,3vw,40px)}
-.headline h1{font-weight:800;letter-spacing:-.045em;line-height:.9;margin:0;font-size:clamp(2.6rem,11.5vw,9rem);text-wrap:balance}
+.headline{padding-block:clamp(24px,4vw,56px) clamp(30px,6vw,80px)}
+.headline h1{font-weight:800;letter-spacing:-.05em;line-height:.84;margin:0;font-size:clamp(2.9rem,12.5vw,9.6rem);text-wrap:balance}
 .headline h1 .g{color:var(--green-txt)}
 .headline .lead{max-width:54ch;margin:clamp(18px,2.5vw,26px) 0 0;font-size:clamp(1.02rem,1.5vw,1.22rem);color:var(--ink-2);line-height:1.5}
 .headline .lead b{color:var(--ink);font-weight:700}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(20px,3vw,28px)}
+.hero-pills b{font-family:"JetBrains Mono";font-weight:500;font-size:12.5px;border:1.5px solid var(--ink);padding:5px 11px;display:inline-flex;gap:7px;align-items:center;background:var(--paper);white-space:nowrap}
+.hero-pills b::before{content:"";width:7px;height:7px;background:var(--green);border:1px solid var(--ink)}
+
+/* como funciona — steps */
+.how{padding-block:clamp(40px,6vw,90px)}
+.steps{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
+.step{border:2px solid var(--ink);background:var(--paper);padding:24px 20px 28px;display:flex;flex-direction:column;gap:9px;position:relative;overflow:hidden}
+.step::after{content:"";position:absolute;right:-30px;top:-30px;width:90px;height:90px;
+  background:radial-gradient(circle at 30% 70%,var(--ink) 1.2px,transparent 1.5px);background-size:8px 8px;opacity:.16}
+.step .n{font-family:"VT323";font-size:38px;line-height:.85;color:var(--green-txt)}
+.step h3{margin:2px 0 0;font-size:1.32rem;font-weight:800;letter-spacing:-.02em}
+.step p{margin:0;font-size:.96rem;color:var(--ink-2)}
+.step .tag{margin-top:auto;font-family:"JetBrains Mono";font-size:11px;color:var(--mut)}
+.clock .time{font-variant-numeric:tabular-nums}
 .cta-links{display:flex;flex-wrap:wrap;gap:clamp(18px,4vw,52px);margin-top:clamp(24px,4vw,44px)}
 .cta-links a{font-weight:700;font-size:clamp(1.4rem,4.2vw,2.6rem);text-decoration:none;letter-spacing:-.02em;position:relative;padding-bottom:4px}
 .cta-links a::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--ink);transform-origin:left;transition:transform .3s cubic-bezier(.12,.23,.5,1)}
@@ -378,7 +395,10 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
 
   <section id="capacidades" class="sec-head wrap">
     <h2 class="rv">Não é um chatbot. É um time inteiro.</h2>
-    <p class="rv d1">Cada janela é um agente do seu esquadrão: atende no WhatsApp com voz, qualifica e agenda, roda o CRM, cria conteúdo e monta novos agentes sob demanda. Arrasta, abre, fecha — é a sua operação rodando na mesa.</p>
+    <p class="rv d1">Cada janela é um agente do seu esquadrão. Arrasta, abre, fecha — é a sua operação rodando na mesa.</p>
+    <div class="hero-pills rv d2">
+      <b>Atende no WhatsApp</b><b>Qualifica e vende</b><b>Marca a reunião</b><b>Roda o CRM</b><b>Cria conteúdo</b><b>Monta novos agentes</b>
+    </div>
   </section>
 
   <section class="desk" aria-label="Mesa de trabalho JAZZ.OS">
@@ -530,6 +550,15 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
         <p>Voz, CRM, agenda, conteúdo, web. A gente monta o time com as funções que o seu caso pede — e liga mais agentes quando você cresce.</p>
         <div class="foot">// compõe, não incha</div>
       </div>
+    </div>
+  </section>
+
+  <section class="how wrap">
+    <div class="sec-head" style="padding-bottom:clamp(18px,3vw,34px)"><h2 class="rv">Como o time entra.</h2></div>
+    <div class="steps">
+      <div class="step rv"><span class="n pix">01</span><h3>Você conta a operação.</h3><p>15 minutos no WhatsApp. A gente entende o que trava e o que dá pra automatizar primeiro.</p><div class="tag">// diagnóstico</div></div>
+      <div class="step rv d1"><span class="n pix">02</span><h3>A gente monta o esquadrão.</h3><p>Clona a voz, liga os agentes certos e conecta CRM e agenda. Você aprova antes de subir.</p><div class="tag">// implantação</div></div>
+      <div class="step rv d2"><span class="n pix">03</span><h3>A operação roda 24/7.</h3><p>O time atende, qualifica, vende e agenda sozinho. Você acompanha os resultados caindo.</p><div class="tag">// no ar</div></div>
     </div>
   </section>
 
