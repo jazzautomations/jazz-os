@@ -77,9 +77,17 @@ nav.links a:hover::after{right:0}
 .gutter-code{position:absolute;left:6px;top:0;bottom:0;writing-mode:vertical-rl;font-size:10px;
   letter-spacing:.28em;color:var(--mut);opacity:.6;user-select:none;display:flex;align-items:center}
 @media (max-width:900px){.gutter-code{display:none}}
-.boot-stage{min-height:clamp(210px,30vh,340px);display:grid;place-items:center}
-.boot{width:min(348px,86vw)}
+.boot-stage{position:relative;min-height:clamp(300px,44vh,480px);display:grid;place-items:center;overflow:hidden}
+.herofx{position:absolute;inset:0;z-index:0;opacity:.92;pointer-events:none}
+.boot{width:min(360px,88vw);position:relative;z-index:2}
 .boot .tbody{display:grid;gap:9px}
+.blog{min-height:104px;font-size:12px;line-height:1.55;white-space:pre-wrap;color:var(--ink)}
+.blog .ok{color:var(--green-txt)}
+.blog .done{color:var(--green-txt);font-weight:700}
+/* reveal on scroll (below the fold only) */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .72s cubic-bezier(.12,.23,.5,1),transform .72s cubic-bezier(.12,.23,.5,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}
 .bar{height:16px;border:1.5px solid var(--ink);background:var(--paper);position:relative;overflow:hidden}
 .bar>i{position:absolute;inset:0;right:100%;background:repeating-linear-gradient(90deg,var(--ink) 0 4px,transparent 4px 8px)}
 .bar em{position:absolute;inset:0;display:grid;place-items:center;font-style:normal;font-size:11px;mix-blend-mode:difference;color:#fff}
@@ -197,6 +205,14 @@ nav.links a:hover::after{right:0}
 .cur{display:inline-block;width:8px;height:14px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
 .race .jazz .cur{background:var(--green-hi)}.race .old .cur{background:var(--ink-2)}
 @keyframes blink{50%{opacity:0}}
+/* CRT scanlines on terminal windows */
+.term .tbody,.app.dark .tbody{position:relative}
+.term .tbody::after,.app.dark .tbody::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.14) 0 1px,transparent 1px 3px);mix-blend-mode:multiply;opacity:.45}
+.race .jazz .tbody::after{background:repeating-linear-gradient(0deg,rgba(56,224,138,.16) 0 1px,transparent 1px 3px);mix-blend-mode:screen;opacity:.6}
+/* double-click to maximize */
+.app.max{left:8px!important;top:8px!important;right:8px!important;bottom:42px!important;width:auto!important;height:auto!important;box-shadow:var(--shadow)}
+.app.max .tbody{max-height:none}
 
 /* manifesto / bento */
 .mani{padding-block:clamp(40px,6vw,90px) clamp(56px,9vw,120px)}
@@ -234,12 +250,17 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.001s!important;transition-duration:.001s!important}
   .proof .track{animation:none}
+  .rv{opacity:1!important;transform:none!important}
+  .herofx{display:none}
 }
 </style>
+<noscript><style>.rv{opacity:1;transform:none}.herofx{display:none}</style></noscript>
+<style>
+</style>
+
+
 </head>
 <body>
-
-
 <div class="marks" aria-hidden="true"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
 
 <header class="nav">
@@ -262,11 +283,11 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   <section class="hero wrap">
     <div class="gutter-code" aria-hidden="true">JAZZ.OS.1 · SYS.AGENT.RUNTIME · pt-BR · WABA//VOICE//CRM//AGENDA · 5511·91037·6040 · uptime=∞</div>
     <div class="boot-stage">
+      <canvas class="herofx" id="herofx" aria-hidden="true"></canvas>
       <div class="window boot" id="boot" role="status" aria-label="Carregando JAZZ.OS">
         <div class="tbar"><span>JAZZ.OS 1.1</span><span class="dots"><b></b><b></b></span></div>
         <div class="tbody">
-          <div>Iniciando ...</div>
-          <div>Agente · Voz · CRM · Agenda</div>
+          <div class="blog" id="blog"></div>
           <div class="bar"><i id="bootfill"></i><em id="bootpct">0%</em></div>
         </div>
       </div>
@@ -274,22 +295,22 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   </section>
 
   <section class="headline wrap">
-    <h1>A agência que <span class="g">roda sozinha.</span></h1>
+    <h1><span id="hl1">A agência que </span><span class="g" id="hl2">roda sozinha.</span></h1>
     <div class="cta-links">
       <a href="#entrar">Entrar na fila</a>
-      <a class="wa" href="https://wa.me/5511910376040" target="_blank" rel="noopener">Falar no WhatsApp</a>
+      <a class="wa" href="https://wa.me/5511910376040" target="_blank" rel="noopener">Chamar no WhatsApp</a>
     </div>
-    <div class="note"><b>NOVO</b><span>A Jazz anuncia agentes de voz sob demanda — atendem, qualificam e marcam a reunião.</span></div>
+    <div class="note"><b>NOVO</b><span>Agentes de voz sob demanda — atendem no WhatsApp, qualificam e já devolvem a reunião marcada.</span></div>
   </section>
 
   <section class="stat wrap">
-    <h2>Responde em&nbsp;3s.<br>Fecha reunião <span class="g" style="color:var(--green-txt)">sozinho.</span></h2>
-    <div class="cap">*Medido no agente da Jazz em produção — <a href="#corrida">(veja a corrida)</a></div>
+    <h2 class="rv">Responde em&nbsp;3s.<br>Fecha reunião <span class="g" style="color:var(--green-txt)">sozinho.</span></h2>
+    <div class="cap rv d1">*Medido no agente da Jazz em produção — <a href="#corrida">(veja a corrida)</a></div>
   </section>
 
   <section id="capacidades" class="sec-head wrap">
-    <h2>Agentes que fazem o trabalho, não que dão dica de trabalho.</h2>
-    <p>Um agente da Jazz atende no WhatsApp com voz clonada em português, entende o lead, roda o CRM e devolve a reunião marcada na agenda. Arrasta as janelas — é assim que a mesa opera.</p>
+    <h2 class="rv">Agentes que fazem o trabalho, não que dão dica de trabalho.</h2>
+    <p class="rv d1">Um agente da Jazz atende no WhatsApp com voz clonada em português, entende o lead, roda o CRM e devolve a reunião marcada na agenda. Isto aqui embaixo é a mesa dele — arrasta, abre, fecha. É um OS de verdade.</p>
   </section>
 
   <section class="desk" aria-label="Mesa de trabalho JAZZ.OS">
@@ -367,8 +388,8 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
 
   <section id="corrida" class="race wrap">
     <div class="sec-head" style="padding-top:clamp(20px,3vw,40px)">
-      <h2>A corrida.</h2>
-      <p>Mesmo lead, mesma pergunta. À esquerda, o agente da Jazz. À direita, o jeito antigo. Um fecha a reunião antes do outro terminar de digitar.</p>
+      <h2 class="rv">A corrida.</h2>
+      <p class="rv d1">Mesmo lead, mesma pergunta. À esquerda, o agente da Jazz. À direita, o jeito antigo. Um fecha a reunião antes do outro terminar de ler o formulário.</p>
     </div>
     <div class="grid">
       <div class="window term jazz" data-race="jazz">
@@ -385,24 +406,24 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   </section>
 
   <section id="manifesto" class="mani wrap">
-    <div class="sec-head" style="padding-top:0"><h2>O manifesto é curto.</h2></div>
+    <div class="sec-head" style="padding-top:0"><h2 class="rv">O manifesto é curto.</h2></div>
     <div class="grid">
-      <div class="cell">
+      <div class="cell rv">
         <span class="k pix">01</span>
         <h3>A Jazz é o caso zero.</h3>
-        <p>O agente que te atende agora é o mesmo que a gente implanta pra você. Se não servisse pra nós, não venderíamos.</p>
+        <p>O agente que te atende agora é o mesmo que a gente implanta pra você. Se não servisse pra nós, não vendíamos pra ninguém.</p>
         <div class="foot">// dogfood</div>
       </div>
-      <div class="cell">
+      <div class="cell rv d1">
         <span class="k pix">02</span>
         <h3>Trabalho entregue, não painel.</h3>
-        <p>Você não ganha mais um dashboard pra olhar. Ganha lead qualificado e reunião na agenda — o resultado, sem o operador.</p>
-        <div class="foot">// outcome &gt; interface</div>
+        <p>Chega de mais um dashboard pra você olhar. Você recebe lead qualificado e reunião na agenda — o resultado, sem o operador no meio.</p>
+        <div class="foot">// resultado &gt; interface</div>
       </div>
-      <div class="cell">
+      <div class="cell rv d2">
         <span class="k pix">03</span>
         <h3>Sistema agêntico sob demanda.</h3>
-        <p>Voz, CRM, agenda, documento, web. Liga a capacidade que o seu caso pede e desliga o resto. Sem inchar.</p>
+        <p>Voz, CRM, agenda, documento, web. Liga a capacidade que o seu caso pede e desliga o resto. Nada de inchar por enfeite.</p>
         <div class="foot">// compõe, não incha</div>
       </div>
     </div>
@@ -419,9 +440,9 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   </section>
 
   <section id="entrar" class="final wrap">
-    <h2>Bota o agente pra trabalhar.</h2>
-    <p class="sub">Fila de acesso antecipado aberta. A gente clona a voz, monta o funil e liga o agente no seu WhatsApp — e você acompanha a primeira reunião cair na agenda.</p>
-    <div class="row">
+    <h2 class="rv">Bota o agente pra trabalhar.</h2>
+    <p class="sub rv d1">Acesso antecipado aberto. A gente clona a voz, monta o funil e liga o agente no seu WhatsApp — e você assiste a primeira reunião cair na agenda. Sem contratar mais ninguém.</p>
+    <div class="row rv d2">
       <a id="falar" class="btn solid" href="https://wa.me/5511910376040" target="_blank" rel="noopener">Falar com a Jazz →</a>
       <a class="btn" href="#capacidades">Ver as capacidades</a>
     </div>
@@ -448,14 +469,34 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
   function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
 
-  /* boot */
-  var fill=document.getElementById('bootfill'),pct=document.getElementById('bootpct'),boot=document.getElementById('boot');
+  /* headline decode */
+  var CH='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&$@/<>[]=+*';
+  function scramble(el,txt,dur,delay){
+    if(reduce){el.textContent=txt;return;}
+    setTimeout(function(){var start=performance.now(),n=txt.length;
+      (function fr(now){var p=Math.min(1,(now-start)/dur),rev=Math.floor(p*n),out='';
+        for(var i=0;i<n;i++){out+=(i<rev||txt.charAt(i)===' ')?txt.charAt(i):CH.charAt((Math.random()*CH.length)|0);}
+        el.textContent=out;if(p<1)requestAnimationFrame(fr);})(performance.now());
+    },delay||0);
+  }
+  (function(){var a=document.getElementById('hl1'),b=document.getElementById('hl2');
+    if(a)scramble(a,'A agência que ',620,120);
+    if(b)scramble(b,'roda sozinha.',780,420);})();
+
+  /* boot: system log + progress */
+  var fill=document.getElementById('bootfill'),pct=document.getElementById('bootpct'),boot=document.getElementById('boot'),blog=document.getElementById('blog');
   function setBoot(p){fill.style.right=(100-p)+'%';pct.textContent=Math.round(p)+'%';}
-  if(reduce){setBoot(100);boot.style.opacity=.55;}
-  else{var p=0,step=function(){p+=Math.random()*13+4;if(p>=100)p=100;setBoot(p);
-    if(p<100)setTimeout(step,90+Math.random()*130);
-    else setTimeout(function(){boot.animate([{opacity:1},{opacity:.5}],{duration:500,fill:'forwards'});},260);};
-    setTimeout(step,300);}
+  var BOOT=[['JAZZ.OS 1.1 — inicializando',''],['montando runtime do agente','ok'],['clonando voz (pt-BR)','ok'],
+    ['conectando WhatsApp Business','ok'],['carregando CRM + agenda','ok'],['PRONTO. bom dia, chefe.','done']];
+  function paintLog(n){var h='';for(var i=0;i<n;i++){var L=BOOT[i];
+    if(L[1]==='done')h+='<div class="done">'+L[0]+'</div>';
+    else if(L[1]==='ok')h+='<div>&gt; '+L[0]+' ......... <span class="ok">ok</span></div>';
+    else h+='<div>'+L[0]+'</div>';}
+    blog.innerHTML=h;}
+  if(reduce){paintLog(BOOT.length);setBoot(100);boot.style.opacity=.62;}
+  else{var bi=0;(function bstep(){bi++;paintLog(bi);setBoot(Math.min(100,Math.round(bi/BOOT.length*100)));
+    if(bi<BOOT.length)setTimeout(bstep,300+Math.random()*220);
+    else setTimeout(function(){boot.animate([{opacity:1},{opacity:.62}],{duration:600,fill:'forwards'});},600);})();}
 
   /* clock */
   var cd=document.getElementById('cdate'),ct=document.getElementById('ctime');
@@ -571,6 +612,56 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   /* duplicate proof track for seamless marquee */
   var pt=document.getElementById('ptrack');
   if(pt&&!reduce)pt.innerHTML+=pt.innerHTML;
+
+  /* ===== living hero field (canvas dither) ===== */
+  (function(){
+    var cv=document.getElementById('herofx');if(!cv||reduce)return;
+    var ctx=cv.getContext('2d'),DPR=Math.min(1.6,window.devicePixelRatio||1),W=0,H=0,GAP=17,t=0,mx=-999,my=-999,raf;
+    var stage=cv.parentNode;
+    function rs(){var r=stage.getBoundingClientRect();W=cv.width=Math.max(1,r.width*DPR);H=cv.height=Math.max(1,r.height*DPR);
+      cv.style.width=r.width+'px';cv.style.height=r.height+'px';}
+    rs();window.addEventListener('resize',rs);
+    stage.addEventListener('pointermove',function(e){var r=cv.getBoundingClientRect();mx=(e.clientX-r.left)*DPR;my=(e.clientY-r.top)*DPR;});
+    stage.addEventListener('pointerleave',function(){mx=my=-99999;});
+    var g=GAP*DPR,R=118*DPR;
+    function draw(){t+=0.018;ctx.clearRect(0,0,W,H);
+      for(var y=g;y<H;y+=g){for(var x=g;x<W;x+=g){
+        var wv=Math.sin(x*0.010+t)+Math.cos(y*0.013-t*0.8);           /* -2..2 */
+        var dx=x-mx,dy=y-my,d=Math.sqrt(dx*dx+dy*dy),infl=Math.max(0,1-d/R);
+        var rr=(0.6+(wv+2)/4*1.5+infl*infl*2.6)*DPR;
+        ctx.beginPath();ctx.arc(x,y,rr,0,6.2832);
+        ctx.fillStyle=infl>0.02?'rgba(3,170,92,'+(0.30+infl*0.55)+')':'rgba(12,12,12,0.12)';
+        ctx.fill();
+      }}
+      raf=requestAnimationFrame(draw);
+    }
+    draw();
+    document.addEventListener('visibilitychange',function(){if(document.hidden){cancelAnimationFrame(raf);}else{draw();}});
+  })();
+
+  /* ===== scroll reveals (below the fold) ===== */
+  (function(){var rvs=[].slice.call(document.querySelectorAll('.rv'));
+    if(reduce||!('IntersectionObserver'in window)){rvs.forEach(function(el){el.classList.add('in');});return;}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},
+      {threshold:.14,rootMargin:'0px 0px -8% 0px'});
+    rvs.forEach(function(el){io.observe(el);});})();
+
+  /* ===== magnetic buttons ===== */
+  if(!reduce)[].slice.call(document.querySelectorAll('.btn.solid,.cta-links a')).forEach(function(b){
+    b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();
+      b.style.transform='translate('+(e.clientX-r.left-r.width/2)*0.16+'px,'+(e.clientY-r.top-r.height/2)*0.22+'px)';});
+    b.addEventListener('pointerleave',function(){b.style.transform='';});
+  });
+
+  /* ===== desk parallax + double-click maximize ===== */
+  (function(){var h1=document.querySelector('.desk .h1'),h2=document.querySelector('.desk .h2');
+    if(!reduce&&desk){desk.addEventListener('pointermove',function(e){var r=desk.getBoundingClientRect();
+      var px=(e.clientX-r.left)/r.width-0.5,py=(e.clientY-r.top)/r.height-0.5;
+      if(h1)h1.style.transform='translate('+px*26+'px,'+py*26+'px)';
+      if(h2)h2.style.transform='translate('+px*-32+'px,'+py*-32+'px)';});}
+    apps.forEach(function(a){var bar=a.querySelector('.tbar');if(!bar)return;
+      bar.addEventListener('dblclick',function(e){if(e.target.closest('.ctl'))return;a.classList.toggle('max');});});
+  })();
 })();
 </script>
 
