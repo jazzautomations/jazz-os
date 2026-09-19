@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Jazz Automations — a agência que roda sozinha. Agentes de IA que atendem no WhatsApp com voz clonada, qualificam, rodam o CRM e marcam a reunião.">
 <meta property="og:title" content="JAZZ.OS — Jazz Automations">
-<meta property="og:description" content="Agentes que fazem o trabalho, não que dão dica de trabalho. Um desktop interativo: chat com o agente, terminal, e a mesa que roda sozinha.">
+<meta property="og:description" content="Um desktop interativo: chat com o agente, terminal, cobrinha e a mesa que roda sozinha. 30x mais barato que um humano.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0c0c0c">
 <title>JAZZ.OS</title>
@@ -239,6 +239,24 @@ nav.links a:hover::after{right:0}
 .shell input{flex:1;min-width:0;background:transparent;border:0;color:var(--band);font-family:"JetBrains Mono";font-size:12px}
 .shell input:focus{outline:0}
 .shell .cur{background:var(--band)}
+.chat .chips-row{display:flex;flex-wrap:wrap;gap:5px;padding:0 11px 10px}
+.chat .chip{font-family:"JetBrains Mono";font-size:11px;border:1.5px solid var(--ink);background:var(--paper);padding:3px 8px;cursor:pointer;color:var(--ink)}
+.chat .chip:hover{background:var(--band)}
+.chat .m.typing span{display:inline-block;width:5px;height:5px;background:var(--mut);border-radius:50%;margin:0 1px;animation:cbounce 1s infinite}
+.chat .m.typing span:nth-child(2){animation-delay:.15s}.chat .m.typing span:nth-child(3){animation-delay:.3s}
+@keyframes cbounce{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-4px);opacity:1}}
+
+/* snake game app */
+.game{width:264px}
+.game .tbody{padding:10px 11px;background:var(--ink);color:var(--band);display:flex;flex-direction:column;gap:8px;align-items:center}
+.game canvas{width:100%;max-width:236px;aspect-ratio:1;background:#0a0f0c;border:1.5px solid var(--band);image-rendering:pixelated;touch-action:none}
+.game .hud{display:flex;justify-content:space-between;width:100%;font-family:"JetBrains Mono";font-size:12px}
+.game .hud b{color:var(--green-hi)}
+.game .msg{font-family:"VT323";font-size:19px;text-align:center;min-height:22px;letter-spacing:.03em;line-height:1.1}
+.game .dpad{display:grid;grid-template-columns:repeat(3,32px);grid-template-rows:repeat(3,32px);gap:3px}
+.game .dpad button{border:1.5px solid var(--band);background:transparent;color:var(--band);font-family:"VT323";font-size:20px;cursor:pointer;padding:0;touch-action:manipulation}
+.game .dpad button:hover{background:var(--band);color:var(--ink)}
+.game .dpad .sp{border:0;visibility:hidden}
 
 /* resize grip */
 .grip{position:absolute;right:0;bottom:0;width:16px;height:16px;cursor:nwse-resize;z-index:5;touch-action:none;
@@ -344,8 +362,8 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   </section>
 
   <section class="stat wrap">
-    <h2 class="rv">Responde em&nbsp;3s.<br>Fecha reunião <span class="g" style="color:var(--green-txt)">sozinho.</span></h2>
-    <div class="cap rv d1">*Medido no agente da Jazz em produção — <a href="#corrida">(veja a corrida)</a></div>
+    <h2 class="rv">30× mais barato.<br>Zero fila. <span class="g" style="color:var(--green-txt)">Zero férias.</span></h2>
+    <div class="cap rv d1">*R$0,21 vs R$6,20 por conversa qualificada · responde em ~3s, 24/7 — <a href="#corrida">(veja a corrida)</a></div>
   </section>
 
   <section id="capacidades" class="sec-head wrap">
@@ -358,7 +376,7 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
     <div class="halftone h2" aria-hidden="true"></div>
     <div class="desk-inner" id="desk">
       <div class="desk-tag pix">JAZZ.OS.1 — MESA</div>
-      <div class="hint" aria-hidden="true">↔ arraste · abra e feche as janelas</div>
+      <div class="hint" aria-hidden="true">↔ arraste · duplo-clique maximiza · botão-direito = menu</div>
 
       <div class="app active window" id="w-voz" data-title="VOZ.app" style="left:1%;top:74px">
         <div class="tbar"><span class="title">VOZ.app</span><span class="ctl"><button class="min" aria-label="Minimizar VOZ">–</button><button class="cls" aria-label="Fechar VOZ">×</button></span></div>
@@ -414,10 +432,24 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
         <div class="tbar"><span class="title">CHAT.wa</span><span class="ctl"><button class="min" aria-label="Minimizar Chat">–</button><button class="cls" aria-label="Fechar Chat">×</button></span></div>
         <div class="tbody">
           <div class="msgs" id="chatmsgs"></div>
+          <div class="chips-row" id="chatchips"></div>
           <form id="chatform" autocomplete="off">
             <input id="chatin" placeholder="escreve pro agente..." aria-label="Mensagem para o agente" maxlength="140">
             <button class="send" type="submit" aria-label="Enviar"><svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true"><path d="M2 7.5h9M7.5 3.5l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
           </form>
+        </div>
+      </div>
+
+      <div class="app window game" id="w-snake" data-title="COBRINHA.exe" style="left:2%;top:330px">
+        <div class="tbar"><span class="title">COBRINHA.exe</span><span class="ctl"><button class="min" aria-label="Minimizar Jogo">–</button><button class="cls" aria-label="Fechar Jogo">×</button></span></div>
+        <div class="tbody">
+          <div class="hud"><span>pontos: <b id="snakeScore">0</b></span><span>recorde: <b id="snakeBest">0</b></span></div>
+          <canvas id="snakeCv" width="160" height="160" aria-label="Jogo da cobrinha"></canvas>
+          <div class="msg" id="snakeMsg">setas / WASD pra jogar</div>
+          <div class="dpad" aria-hidden="true">
+            <button class="sp"></button><button data-dir="up">▲</button><button class="sp"></button>
+            <button data-dir="left">◀</button><button data-dir="down">▼</button><button data-dir="right">▶</button>
+          </div>
         </div>
       </div>
 
@@ -580,13 +612,12 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   function homePos(el){var s=el.style;return {left:s.left,top:s.top,right:s.right};}
   function focusApp(a){apps.forEach(function(x){x.classList.remove('active');});a.classList.add('active');a.style.zIndex=++zc;
     a.dataset.ord=++order;refreshTabs();}
-  function openApp(a,focus){var w=WM[a.id];w.state='open';a.classList.remove('closed');a.hidden=false;
+  function openApp(a,focus){var w=WM[a.id];w.state='open';a.classList.remove('closed');a.hidden=false;a.style.opacity='';
     if(focus!==false)focusApp(a);else refreshTabs();}
-  function minApp(a){WM[a.id].state='min';a.classList.add('closed');
-    // focus next visible
+  function minApp(a){WM[a.id].state='min';a.style.opacity='';a.classList.add('closed');
     var vis=apps.filter(function(x){return WM[x.id].state==='open';}).sort(function(p,q){return(q.dataset.ord|0)-(p.dataset.ord|0);});
     if(vis[0])focusApp(vis[0]);else refreshTabs();}
-  function closeApp(a){WM[a.id].state='closed';a.classList.add('closed');refreshTabs();}
+  function closeApp(a){WM[a.id].state='closed';a.style.opacity='';a.classList.add('closed');refreshTabs();}
   function toggleApp(a){var st=WM[a.id].state;if(st==='open'){if(a.classList.contains('active'))minApp(a);else focusApp(a);}else openApp(a,true);}
 
   function refreshTabs(){
@@ -640,13 +671,15 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
       a.style.width=Math.round(Math.min(cw,320))+'px';a.style.height='';focusApp(a);});}
 
   /* start CRM + CUSTO minimized to keep the desk clean */
-  ['w-crm','w-custo'].forEach(function(id){var a=document.getElementById(id);if(a){WM[id].state='min';a.classList.add('closed');}});
+  ['w-crm','w-custo','w-snake'].forEach(function(id){var a=document.getElementById(id);if(a){WM[id].state='min';a.classList.add('closed');}});
   refreshTabs();
 
   /* boot reveal windows onto the desktop */
   if(!reduce)apps.forEach(function(a,i){if(WM[a.id].state!=='open')return;a.style.opacity=0;
-    a.animate([{opacity:0,transform:'translateY(16px) scale(.985)'},{opacity:1,transform:'none'}],
-      {duration:520,delay:900+i*100,easing:'cubic-bezier(.12,.23,.5,1)',fill:'forwards'});});
+    var an=a.animate([{opacity:0,transform:'translateY(16px) scale(.985)'},{opacity:1,transform:'none'}],
+      {duration:520,delay:900+i*100,easing:'cubic-bezier(.12,.23,.5,1)',fill:'forwards'});
+    an.onfinish=function(){try{an.cancel();}catch(_){}a.style.opacity='';};});
+  else apps.forEach(function(a){a.style.opacity='';});
 
   /* start menu */
   var start=document.getElementById('start'),menu=document.getElementById('startmenu');
@@ -758,25 +791,69 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
     function end(e){on=false;try{g.releasePointerCapture(e.pointerId);}catch(_){}}
     g.addEventListener('pointerup',end);g.addEventListener('pointercancel',end);});
 
-  /* ===== interactive agent chat ===== */
-  (function(){var box=document.getElementById('chatmsgs'),form=document.getElementById('chatform'),inp=document.getElementById('chatin');
+  /* ===== interactive agent chat (guided flow) ===== */
+  (function(){
+    var box=document.getElementById('chatmsgs'),chips=document.getElementById('chatchips'),form=document.getElementById('chatform'),inp=document.getElementById('chatin');
     if(!form)return;
-    function add(cls,txt){var d=document.createElement('div');d.className='m '+cls;d.textContent=txt;box.appendChild(d);box.scrollTop=box.scrollHeight;return d;}
-    var turn=0;
-    function reply(u){u=(u||'').toLowerCase();
-      if(/pre[çc]o|valor|quanto|custa|plano/.test(u))return 'Depende do que você quer que eu resolva. Quantos atendimentos por dia, em quantos números? Já te trago proposta e marco 15 min com o time.';
-      if(/reuni|agenda|hor[áa]rio|marca|call|demo/.test(u)){openId('w-agenda');return 'Fechado. Tenho quinta 15h ou sexta 10h. Qual encaixa? Eu confirmo, coloco na agenda e te lembro no dia.';}
-      if(/voz|[áa]udio/.test(u)){openId('w-voz');return 'Respondo em áudio com voz clonada em pt-BR — soa como gente, não robô de menu. Quer um exemplo?';}
-      if(/crm|lead|funil/.test(u)){openId('w-crm');return 'Puxo o lead pro CRM, qualifico e etiqueto sozinho. Te mostro o funil rodando?';}
-      if(/oi|ol[áa]|bom dia|boa tarde|e a[íi]|opa/.test(u))return 'Opa! Sou o agente da Jazz. Atendo, qualifico e já marco a reunião. O que você quer resolver hoje?';
-      if(/obrigad|valeu|show|top/.test(u))return 'É nós. Quando quiser, é só chamar no WhatsApp que eu assumo daqui.';
-      turn++;var g=['Entendi. Me dá mais um detalhe que eu já qualifico e te encaminho.',
-        'Boa. Isso eu resolvo — qualifico agora e marco uma conversa rápida. Pode ser?',
-        'Anotado. Quer que eu já reserve um horário com o time da Jazz?'];return g[turn%g.length];}
-    function botReply(u){var t=add('bot typing','o agente está digitando…');var r=reply(u);
-      setTimeout(function(){t.remove();var d=add('bot','');var i=0;(function ty(){d.textContent=r.slice(0,i++);box.scrollTop=box.scrollHeight;if(i<=r.length)setTimeout(ty,13);})();},650+Math.random()*450);}
-    form.addEventListener('submit',function(e){e.preventDefault();var v=inp.value.trim();if(!v)return;add('user',v);inp.value='';botReply(v);});
-    add('bot','Opa! Sou o agente da Jazz. Pergunta o preço, pede um horário, ou manda "quero voz".');
+    var LBL={preco:'Quanto custa',reuniao:'Marcar reunião',voz:'Ouvir a voz',crm:'Puxar um lead',falar:'Falar de verdade'};
+    function M(k){return {key:k,label:LBL[k]};}
+    function bubble(cls,txt){var d=document.createElement('div');d.className='m '+cls;d.textContent=txt;box.appendChild(d);box.scrollTop=box.scrollHeight;return d;}
+    function setChips(list){chips.innerHTML='';list.forEach(function(c){var b=document.createElement('button');b.className='chip';b.type='button';b.textContent=c.label;
+      b.addEventListener('click',function(){send(c.label,c.key);});chips.appendChild(b);});}
+    function botSay(txt,after){var t=document.createElement('div');t.className='m bot typing';t.innerHTML='<span></span><span></span><span></span>';box.appendChild(t);box.scrollTop=box.scrollHeight;
+      setTimeout(function(){t.remove();var d=bubble('bot','');var i=0;(function ty(){d.textContent=txt.slice(0,i++);box.scrollTop=box.scrollHeight;if(i<=txt.length)setTimeout(ty,12);else if(after)after();})();},640+Math.random()*460);}
+    var FLOW={
+      preco:{r:'Sai perto de R$0,21 por conversa qualificada — contra ~R$6,20 de um atendente humano. Me diz quantos atendimentos por dia você tem que eu fecho a conta e já marco 15 min.',c:[M('reuniao'),M('falar')]},
+      reuniao:{r:'Fechado. Tenho quinta 15h ou sexta 10h. Qual encaixa? Eu confirmo, jogo na agenda e te lembro no dia.',act:function(){openId('w-agenda');},c:[M('preco'),M('falar')]},
+      voz:{r:'Respondo em áudio com voz clonada em pt-BR — soa como gente, não como robô de menu. Abre a VOZ.app aí do lado que eu te mostro.',act:function(){openId('w-voz');},c:[M('reuniao'),M('falar')]},
+      crm:{r:'Puxo o lead pro CRM, qualifico, etiqueto e movo no funil sozinho. Vou abrir o CRM.db pra você ver rodando.',act:function(){openId('w-crm');},c:[M('reuniao'),M('falar')]},
+      falar:{r:'É nós. Te jogo pro WhatsApp agora — de lá eu assumo e já começo a qualificar.',act:function(){setTimeout(function(){window.open('https://wa.me/5511910376040','_blank','noopener');},600);},c:[M('preco'),M('reuniao')]}
+    };
+    function intent(u){u=(u||'').toLowerCase();
+      if(/pre[çc]o|valor|quanto|custa|plano|caro/.test(u))return'preco';
+      if(/reuni|agenda|hor[áa]rio|marca|call|demo/.test(u))return'reuniao';
+      if(/voz|[áa]udio/.test(u))return'voz';
+      if(/crm|lead|funil/.test(u))return'crm';
+      if(/whats|falar|humano|vend|zap/.test(u))return'falar';
+      return null;}
+    function respond(key){var f=FLOW[key];if(f.act)f.act();botSay(f.r,function(){setChips(f.c);});}
+    function send(label,key){bubble('user',label);chips.innerHTML='';if(!key)key=intent(label);
+      if(key&&FLOW[key])respond(key);
+      else botSay('Entendi. Isso eu resolvo — qualifico e já marco uma conversa pra fechar. Quer que eu reserve um horário?',function(){setChips([M('reuniao'),M('preco'),M('falar')]);});}
+    form.addEventListener('submit',function(e){e.preventDefault();var v=inp.value.trim();if(!v)return;inp.value='';send(v,null);});
+    bubble('bot','Opa — aqui é o agente da Jazz, o mesmo que a gente liga no seu WhatsApp. Posso te mostrar na prática:');
+    setChips([M('preco'),M('reuniao'),M('voz'),M('falar')]);
+  })();
+
+  /* ===== snake game ===== */
+  (function(){
+    var cv=document.getElementById('snakeCv');if(!cv)return;var ctx=cv.getContext('2d');
+    var N=16,CELL=cv.width/N,snake,dir,ndir,food,score,best=0,dead;
+    var scoreEl=document.getElementById('snakeScore'),bestEl=document.getElementById('snakeBest'),msgEl=document.getElementById('snakeMsg');
+    try{best=parseInt(localStorage.getItem('jazzSnakeBest')||'0',10)||0;}catch(_){}bestEl.textContent=best;
+    function place(){do{food={x:(Math.random()*N)|0,y:(Math.random()*N)|0};}while(snake&&snake.some(function(s){return s.x===food.x&&s.y===food.y;}));}
+    function reset(){snake=[{x:8,y:8},{x:7,y:8},{x:6,y:8}];dir={x:1,y:0};ndir=dir;score=0;dead=false;scoreEl.textContent='0';msgEl.textContent='';place();draw();}
+    function over(){dead=true;msgEl.textContent='fim — espaço / toque pra jogar';
+      if(score>best){best=score;bestEl.textContent=best;try{localStorage.setItem('jazzSnakeBest',best);}catch(_){}}}
+    function step(){dir=ndir;var h={x:snake[0].x+dir.x,y:snake[0].y+dir.y};
+      if(h.x<0||h.y<0||h.x>=N||h.y>=N||snake.some(function(s){return s.x===h.x&&s.y===h.y;})){over();return;}
+      snake.unshift(h);if(h.x===food.x&&h.y===food.y){score++;scoreEl.textContent=score;place();}else snake.pop();draw();}
+    function draw(){ctx.clearRect(0,0,cv.width,cv.height);
+      ctx.fillStyle='#38e08a';snake.forEach(function(s,i){ctx.globalAlpha=i?0.82:1;ctx.fillRect(s.x*CELL+1,s.y*CELL+1,CELL-2,CELL-2);});ctx.globalAlpha=1;
+      ctx.fillStyle='#fefefe';ctx.fillRect(food.x*CELL+2,food.y*CELL+2,CELL-4,CELL-4);}
+    function setDir(x,y){if(dead)return;if(x===-dir.x&&y===-dir.y)return;ndir={x:x,y:y};}
+    function running(){return WM['w-snake']&&WM['w-snake'].state==='open'&&!document.hidden;}
+    (function loop(){if(running()&&!dead)step();setTimeout(loop,120);})();
+    reset();
+    document.addEventListener('keydown',function(e){if(!running())return;var k=e.key.toLowerCase();
+      var m={arrowup:[0,-1],w:[0,-1],arrowdown:[0,1],s:[0,1],arrowleft:[-1,0],a:[-1,0],arrowright:[1,0],d:[1,0]};
+      if(m[k]){e.preventDefault();setDir(m[k][0],m[k][1]);}
+      else if(k===' '||k==='enter'){e.preventDefault();if(dead)reset();}});
+    cv.closest('.game').querySelectorAll('[data-dir]').forEach(function(b){b.addEventListener('click',function(){
+      var d=b.getAttribute('data-dir');setDir(d==='left'?-1:d==='right'?1:0,d==='up'?-1:d==='down'?1:0);});});
+    var tx,ty;cv.addEventListener('pointerdown',function(e){tx=e.clientX;ty=e.clientY;if(dead)reset();});
+    cv.addEventListener('pointerup',function(e){var dx=e.clientX-tx,dy=e.clientY-ty;if(Math.abs(dx)<12&&Math.abs(dy)<12)return;
+      if(Math.abs(dx)>Math.abs(dy))setDir(dx>0?1:-1,0);else setDir(0,dy>0?1:-1);});
   })();
 
   /* ===== interactive shell ===== */
@@ -817,6 +894,7 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
       var hd=document.createElement('div');hd.className='hd';hd.textContent='JAZZ.OS';menu.appendChild(hd);
       menu.appendChild(item('Abrir chat do agente',function(){openId('w-chat');}));
       menu.appendChild(item('Novo terminal',function(){openId('w-term');}));
+      menu.appendChild(item('Jogar cobrinha',function(){openId('w-snake');}));
       menu.appendChild(item('Organizar janelas',tile));
       menu.appendChild(item('Reabrir tudo',reopenAll));
       menu.appendChild(item('Falar no WhatsApp',function(){window.open('https://wa.me/5511910376040','_blank','noopener');}));
