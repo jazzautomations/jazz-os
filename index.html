@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Jazz Automations — a agência que roda sozinha. Agentes de IA que atendem no WhatsApp com voz clonada, qualificam, rodam o CRM e marcam a reunião.">
-<meta property="og:title" content="JAZZ.OS — Jazz Automations">
-<meta property="og:description" content="Um desktop interativo: chat com o agente, terminal, cobrinha e a mesa que roda sozinha. 30x mais barato que um humano.">
+<meta name="description" content="Jazz Automations — um esquadrão de agentes de IA que opera a sua empresa 24/7. Atende no WhatsApp com voz, qualifica, vende, agenda e cria conteúdo. CRM e agenda inclusos.">
+<meta property="og:title" content="JAZZ.OS — um time de IA que opera sozinho">
+<meta property="og:description" content="Não é um chatbot — é um esquadrão de agentes que opera a sua empresa 24 horas por dia. CRM e agenda inclusos.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0c0c0c">
 <title>JAZZ.OS</title>
@@ -95,6 +95,8 @@ nav.links a:hover::after{right:0}
 .headline{padding-block:clamp(18px,3vw,40px)}
 .headline h1{font-weight:800;letter-spacing:-.045em;line-height:.9;margin:0;font-size:clamp(2.6rem,11.5vw,9rem);text-wrap:balance}
 .headline h1 .g{color:var(--green-txt)}
+.headline .lead{max-width:54ch;margin:clamp(18px,2.5vw,26px) 0 0;font-size:clamp(1.02rem,1.5vw,1.22rem);color:var(--ink-2);line-height:1.5}
+.headline .lead b{color:var(--ink);font-weight:700}
 .cta-links{display:flex;flex-wrap:wrap;gap:clamp(18px,4vw,52px);margin-top:clamp(24px,4vw,44px)}
 .cta-links a{font-weight:700;font-size:clamp(1.4rem,4.2vw,2.6rem);text-decoration:none;letter-spacing:-.02em;position:relative;padding-bottom:4px}
 .cta-links a::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--ink);transform-origin:left;transition:transform .3s cubic-bezier(.12,.23,.5,1)}
@@ -126,6 +128,13 @@ nav.links a:hover::after{right:0}
 .desk-inner{position:relative;min-height:740px;padding:20px var(--gut) 52px}
 .desk-tag{font-family:"VT323";font-size:20px;background:var(--ink);color:var(--band);display:inline-block;padding:1px 9px;margin-bottom:6px;letter-spacing:.04em}
 .hint{position:absolute;right:var(--gut);top:22px;font-family:"JetBrains Mono";font-size:11px;color:var(--ink-2);opacity:.8}
+.desk .anchor{position:absolute;width:15px;height:15px;color:var(--ink);z-index:0;pointer-events:none}
+.desk .anchor::before,.desk .anchor::after{content:"";position:absolute;background:currentColor}
+.desk .anchor::before{width:15px;height:2px;top:0;left:0}
+.desk .anchor::after{width:2px;height:15px;top:0;left:0}
+.desk .anchor.tr::before{left:auto;right:0}.desk .anchor.tr::after{left:auto;right:0}
+.desk .anchor.bl::before{top:auto;bottom:0}.desk .anchor.bl::after{top:auto;bottom:0}
+.desk .anchor.br::before{top:auto;bottom:0;left:auto;right:0}.desk .anchor.br::after{top:auto;bottom:0;left:auto;right:0}
 
 .app{position:absolute;width:258px;max-width:82vw;user-select:none;z-index:1;transition:box-shadow .2s cubic-bezier(.12,.23,.5,1)}
 .app.active{box-shadow:var(--shadow)}
@@ -353,28 +362,33 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   </section>
 
   <section class="headline wrap">
-    <h1><span id="hl1">A agência que </span><span class="g" id="hl2">roda sozinha.</span></h1>
+    <h1><span id="hl1">Um time de IA que </span><span class="g" id="hl2">opera sozinho.</span></h1>
+    <p class="lead">Não é um chatbot — é um <b>esquadrão de agentes</b> que atende no WhatsApp com voz, qualifica, vende e entrega. Roda o seu CRM e a sua agenda, cria conteúdo e monta novos agentes sob demanda. A sua operação <b>24 horas por dia</b>, sem contratar mais ninguém.</p>
     <div class="cta-links">
-      <a href="#entrar">Entrar na fila</a>
-      <a class="wa" href="https://wa.me/5511910376040" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      <a href="#entrar">Implantar o time</a>
+      <a class="wa" href="https://wa.me/5511910376040" target="_blank" rel="noopener">Falar no WhatsApp</a>
     </div>
-    <div class="note"><b>NOVO</b><span>Agentes de voz sob demanda — atendem no WhatsApp, qualificam e já devolvem a reunião marcada.</span></div>
+    <div class="note"><b>SQUAD</b><span>A Jazz monta um esquadrão de agentes sob medida e liga direto no seu WhatsApp — CRM e agenda inclusos.</span></div>
   </section>
 
   <section class="stat wrap">
-    <h2 class="rv">30× mais barato.<br>Zero fila. <span class="g" style="color:var(--green-txt)">Zero férias.</span></h2>
-    <div class="cap rv d1">*R$0,21 vs R$6,20 por conversa qualificada · responde em ~3s, 24/7 — <a href="#corrida">(veja a corrida)</a></div>
+    <h2 class="rv">Um time inteiro.<br>Num <span class="g" style="color:var(--green-txt)">só agente.</span></h2>
+    <div class="cap rv d1">*atende, qualifica, vende, agenda e produz — 24/7, sem faltar, sem pedir aumento — <a href="#corrida">(veja a corrida)</a></div>
   </section>
 
   <section id="capacidades" class="sec-head wrap">
-    <h2 class="rv">Agentes que fazem o trabalho, não que dão dica de trabalho.</h2>
-    <p class="rv d1">Um agente da Jazz atende no WhatsApp com voz clonada em português, entende o lead, roda o CRM e devolve a reunião marcada na agenda. Isto aqui embaixo é a mesa dele — arrasta, abre, fecha. É um OS de verdade.</p>
+    <h2 class="rv">Não é um chatbot. É um time inteiro.</h2>
+    <p class="rv d1">Cada janela é um agente do seu esquadrão: atende no WhatsApp com voz, qualifica e agenda, roda o CRM, cria conteúdo e monta novos agentes sob demanda. Arrasta, abre, fecha — é a sua operação rodando na mesa.</p>
   </section>
 
   <section class="desk" aria-label="Mesa de trabalho JAZZ.OS">
     <div class="halftone h1" aria-hidden="true"></div>
     <div class="halftone h2" aria-hidden="true"></div>
     <div class="desk-inner" id="desk">
+      <span class="anchor" style="top:12px;left:12px" aria-hidden="true"></span>
+      <span class="anchor tr" style="top:12px;right:12px" aria-hidden="true"></span>
+      <span class="anchor bl" style="bottom:12px;left:12px" aria-hidden="true"></span>
+      <span class="anchor br" style="bottom:12px;right:12px" aria-hidden="true"></span>
       <div class="desk-tag pix">JAZZ.OS.1 — MESA</div>
       <div class="hint" aria-hidden="true">↔ arraste · duplo-clique maximiza · botão-direito = menu</div>
 
@@ -397,16 +411,12 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
         </div>
       </div>
 
-      <div class="app window chart dark" id="w-custo" data-title="CUSTO.chart" style="left:37%;top:96px;width:288px">
-        <div class="tbar"><span class="title">CUSTO.chart</span><span class="ctl"><button class="min" aria-label="Minimizar Custo">–</button><button class="cls" aria-label="Fechar Custo">×</button></span></div>
+      <div class="app window" id="w-conteudo" data-title="CONTEUDO.app" style="left:37%;top:96px">
+        <div class="tbar"><span class="title">CONTEUDO.app</span><span class="ctl"><button class="min" aria-label="Minimizar Conteúdo">–</button><button class="cls" aria-label="Fechar Conteúdo">×</button></span></div>
         <div class="tbody">
-          <div style="font-size:11px;margin-bottom:6px">CUSTO POR ATENDIMENTO [R$]</div>
-          <div class="row">
-            <div class="b"><div class="lab"><span>Atendente humano</span><span>R$ 6,20</span></div><div class="track"><i class="fill" style="width:100%"></i></div></div>
-            <div class="b"><div class="lab"><span>Chatbot de menu</span><span>R$ 1,80</span></div><div class="track"><i class="fill" style="width:29%"></i></div></div>
-            <div class="b"><div class="lab"><span>Agente Jazz</span><span>R$ 0,21</span></div><div class="track"><i class="fill" style="width:4%"></i></div></div>
-          </div>
-          <div class="cap">estimativa por conversa qualificada · pt-BR</div>
+          <div class="big">CRIA</div>
+          <div class="desc">Imagem, documento e post na sua marca. O time também produz — não só responde.</div>
+          <div class="chips"><b>imagem</b><b>documento</b><b>post</b></div>
         </div>
       </div>
 
@@ -516,8 +526,8 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
       </div>
       <div class="cell rv d2">
         <span class="k pix">03</span>
-        <h3>Sistema agêntico sob demanda.</h3>
-        <p>Voz, CRM, agenda, documento, web. Liga a capacidade que o seu caso pede e desliga o resto. Nada de inchar por enfeite.</p>
+        <h3>Um esquadrão sob medida.</h3>
+        <p>Voz, CRM, agenda, conteúdo, web. A gente monta o time com as funções que o seu caso pede — e liga mais agentes quando você cresce.</p>
         <div class="foot">// compõe, não incha</div>
       </div>
     </div>
@@ -525,17 +535,17 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
 
   <section id="casos" class="proof" aria-label="Provas">
     <div class="track" id="ptrack">
-      <span>1º lugar — Hackathon Oracle 2026</span>
+      <span>Opera a sua empresa 24/7</span>
       <span>Atende no WhatsApp com voz clonada</span>
-      <span>Qualifica → agenda → prontuário do lead</span>
-      <span>zap.jazzautomations.com.br no ar</span>
-      <span>O agente vende as próprias capacidades</span>
+      <span>CRM e agenda inclusos</span>
+      <span>Qualifica, vende e marca a reunião</span>
+      <span>1º lugar — Hackathon Oracle 2026</span>
     </div>
   </section>
 
   <section id="entrar" class="final wrap">
-    <h2 class="rv">Bota o agente pra trabalhar.</h2>
-    <p class="sub rv d1">Acesso antecipado aberto. A gente clona a voz, monta o funil e liga o agente no seu WhatsApp — e você assiste a primeira reunião cair na agenda. Sem contratar mais ninguém.</p>
+    <h2 class="rv">Implanta o time. Hoje.</h2>
+    <p class="sub rv d1">A gente clona a voz, monta o esquadrão e liga tudo no seu WhatsApp — com CRM e agenda inclusos. Você assiste a sua operação começar a rodar sozinha. Sem contratar mais ninguém.</p>
     <div class="row rv d2">
       <a id="falar" class="btn solid" href="https://wa.me/5511910376040" target="_blank" rel="noopener">Falar com a Jazz →</a>
       <a class="btn" href="#capacidades">Ver as capacidades</a>
@@ -574,13 +584,13 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
     },delay||0);
   }
   (function(){var a=document.getElementById('hl1'),b=document.getElementById('hl2');
-    if(a)scramble(a,'A agência que ',620,120);
-    if(b)scramble(b,'roda sozinha.',780,420);})();
+    if(a)scramble(a,'Um time de IA que ',620,120);
+    if(b)scramble(b,'opera sozinho.',780,420);})();
 
   /* boot: system log + progress */
   var fill=document.getElementById('bootfill'),pct=document.getElementById('bootpct'),boot=document.getElementById('boot'),blog=document.getElementById('blog');
   function setBoot(p){fill.style.right=(100-p)+'%';pct.textContent=Math.round(p)+'%';}
-  var BOOT=[['JAZZ.OS 1.1 — inicializando',''],['montando runtime do agente','ok'],['clonando voz (pt-BR)','ok'],
+  var BOOT=[['JAZZ.OS 1.1 — inicializando',''],['montando o esquadrão','ok'],['clonando voz (pt-BR)','ok'],
     ['conectando WhatsApp Business','ok'],['carregando CRM + agenda','ok'],['PRONTO. bom dia, chefe.','done']];
   function paintLog(n){var h='';for(var i=0;i<n;i++){var L=BOOT[i];
     if(L[1]==='done')h+='<div class="done">'+L[0]+'</div>';
@@ -663,21 +673,34 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   /* helpers used by shell + context menu */
   function openId(id){var a=document.getElementById(id);if(a&&WM[a.id])openApp(a,true);}
   function reopenAll(){apps.forEach(function(a){var w=WM[a.id];a.classList.remove('max');a.style.left=w.home.left;a.style.top=w.home.top;a.style.right=w.home.right;a.style.width='';a.style.height='';openApp(a,false);});if(apps[0])focusApp(apps[0]);}
+  var ORDER=['w-voz','w-chat','w-agenda','w-conteudo','w-term','w-clock','w-crm','w-snake'];
   function tile(){var op=apps.filter(function(a){return WM[a.id].state==='open';});if(!op.length)return;
-    var dr=desk.getBoundingClientRect(),pad=14,cols=Math.min(op.length,Math.max(1,Math.floor((dr.width-pad)/(280+pad)))),
-        cw=(dr.width-pad*(cols+1))/cols;
-    op.forEach(function(a,i){a.classList.remove('max');var r=Math.floor(i/cols),c=i%cols;
-      a.style.right='auto';a.style.left=Math.round(pad+c*(cw+pad))+'px';a.style.top=(pad+r*196)+'px';
-      a.style.width=Math.round(Math.min(cw,320))+'px';a.style.height='';focusApp(a);});}
+    op.sort(function(a,b){return ORDER.indexOf(a.id)-ORDER.indexOf(b.id);});
+    var dr=desk.getBoundingClientRect(),
+        padX=parseFloat(getComputedStyle(desk).paddingLeft)||16,
+        gap=16,startY=64,minW=250,avail=dr.width-padX*2,
+        cols=Math.max(1,Math.min(op.length,Math.floor((avail+gap)/(minW+gap)))),
+        colW=(avail-gap*(cols-1))/cols,h=[];for(var k=0;k<cols;k++)h.push(startY);
+    op.forEach(function(a){a.classList.remove('max');a.style.right='auto';a.style.height='';
+      a.style.width=Math.round(Math.min(colW,338))+'px';
+      var c=0;for(var j=1;j<cols;j++)if(h[j]<h[c])c=j;
+      a.style.left=Math.round(padX+c*(colW+gap))+'px';a.style.top=Math.round(h[c])+'px';
+      h[c]+=a.offsetHeight+gap;});
+    desk.style.minHeight=(Math.max.apply(null,h)+56)+'px';}
 
-  /* start CRM + CUSTO minimized to keep the desk clean */
-  ['w-crm','w-custo','w-snake'].forEach(function(id){var a=document.getElementById(id);if(a){WM[id].state='min';a.classList.add('closed');}});
+  /* keep only the core apps open; the rest wait in the taskbar */
+  ['w-crm','w-snake'].forEach(function(id){var a=document.getElementById(id);if(a){WM[id].state='min';a.classList.add('closed');}});
   refreshTabs();
 
-  /* boot reveal windows onto the desktop */
+  /* tidy, anchored resting layout (grid) — then reveal into place */
+  tile();
+  window.addEventListener('load',tile);
+  setTimeout(tile,450);
+  var _rt;window.addEventListener('resize',function(){clearTimeout(_rt);_rt=setTimeout(tile,180);});
+
   if(!reduce)apps.forEach(function(a,i){if(WM[a.id].state!=='open')return;a.style.opacity=0;
-    var an=a.animate([{opacity:0,transform:'translateY(16px) scale(.985)'},{opacity:1,transform:'none'}],
-      {duration:520,delay:900+i*100,easing:'cubic-bezier(.12,.23,.5,1)',fill:'forwards'});
+    var an=a.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],
+      {duration:500,delay:820+i*90,easing:'cubic-bezier(.12,.23,.5,1)',fill:'forwards'});
     an.onfinish=function(){try{an.cancel();}catch(_){}a.style.opacity='';};});
   else apps.forEach(function(a){a.style.opacity='';});
 
@@ -863,7 +886,7 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
     var CMD={
       ajuda:function(){return 'comandos: ajuda · sobre · voz · crm · agenda · corrida · casos · chat · falar · limpar';},
       help:function(){return CMD.ajuda();},
-      sobre:function(){return 'JAZZ.OS 1.1 — a agência que roda sozinha. Agentes que atendem, qualificam e marcam a reunião.';},
+      sobre:function(){return 'JAZZ.OS 1.1 — um esquadrão de agentes que opera a sua empresa 24/7. Atende, qualifica, vende, agenda e produz.';},
       voz:function(){openId('w-voz');return 'VOZ.app — voz clonada pt-BR, responde em áudio em &lt;2s.';},
       crm:function(){openId('w-crm');return 'abrindo CRM.db — qualifica, etiqueta e move o lead sozinho.';},
       custo:function(){openId('w-custo');return 'abrindo CUSTO.chart…';},
