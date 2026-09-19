@@ -168,6 +168,17 @@ nav.links a:hover::after{right:0}
 .app .avatar{width:100%;aspect-ratio:1/1;border:1.5px solid var(--ink);margin-bottom:8px;
   background:radial-gradient(circle at 50% 50%,var(--ink) 1.1px,transparent 1.4px) 0 0/6px 6px,var(--band);
   -webkit-mask:radial-gradient(circle at 50% 45%,#000 26%,transparent 55%);mask:radial-gradient(circle at 50% 45%,#000 26%,transparent 55%)}
+/* gadget: waveform / equalizador (VOZ) */
+.wave{display:flex;align-items:center;gap:3px;height:110px;padding:10px;border:1.5px solid var(--ink);margin-bottom:8px;background:var(--band);overflow:hidden}
+.wave i{flex:1;min-width:3px;background:var(--ink);height:16%;animation:eq 1.1s ease-in-out infinite}
+@keyframes eq{0%,100%{height:14%}50%{height:90%}}
+/* gadget: mini funil (CRM) */
+.mini{display:grid;gap:5px;margin-top:10px}
+.mini .r{display:flex;align-items:center;gap:8px;font-size:10.5px;color:var(--ink-2)}
+.mini .r em{flex:none;width:78px;font-style:normal}
+.mini .r span{flex:1;height:11px;background:var(--paper);border:1.5px solid var(--ink);position:relative}
+.mini .r span b{position:absolute;inset:0;right:auto;background:repeating-linear-gradient(90deg,var(--ink) 0 4px,transparent 4px 8px)}
+.mini .r u{flex:none;width:30px;text-align:right;font-style:normal;text-decoration:none;font-variant-numeric:tabular-nums}
 .clock .tbody{display:grid;gap:2px;font-size:13px}
 .clock .time{font-family:"VT323";font-size:30px;line-height:1;color:var(--green-txt)}
 
@@ -433,13 +444,13 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
       <span class="anchor tr" style="top:12px;right:12px" aria-hidden="true"></span>
       <span class="anchor bl" style="bottom:12px;left:12px" aria-hidden="true"></span>
       <span class="anchor br" style="bottom:12px;right:12px" aria-hidden="true"></span>
-      <div class="desk-tag pix">JAZZ.OS.1 — MESA</div>
+      <div class="desk-tag pix">JAZZ.OS.1 — PALCO</div>
       <div class="hint" aria-hidden="true">↔ arraste · duplo-clique maximiza · botão-direito = menu</div>
 
       <div class="app active window" id="w-voz" data-title="VOZ.app" style="left:1%;top:74px">
         <div class="tbar"><span class="title">VOZ.app</span><span class="ctl"><button class="min" aria-label="Minimizar VOZ">–</button><button class="cls" aria-label="Fechar VOZ">×</button></span></div>
         <div class="tbody">
-          <div class="avatar" aria-hidden="true"></div>
+          <div class="wave" aria-hidden="true"><i style="animation-delay:0s"></i><i style="animation-delay:.18s"></i><i style="animation-delay:.36s"></i><i style="animation-delay:.09s"></i><i style="animation-delay:.52s"></i><i style="animation-delay:.27s"></i><i style="animation-delay:.63s"></i><i style="animation-delay:.14s"></i><i style="animation-delay:.41s"></i><i style="animation-delay:.7s"></i><i style="animation-delay:.22s"></i><i style="animation-delay:.55s"></i><i style="animation-delay:.06s"></i><i style="animation-delay:.48s"></i><i style="animation-delay:.31s"></i><i style="animation-delay:.66s"></i><i style="animation-delay:.11s"></i><i style="animation-delay:.44s"></i></div>
           <div class="big">VOZ</div>
           <div class="desc">Atendimento por voz em português. Responde em áudio com som natural, sem menus automáticos.</div>
           <div class="chips"><b>áudio</b><b>entonação</b><b>&lt;2s</b></div>
@@ -451,6 +462,11 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
         <div class="tbody">
           <div class="big">CRM</div>
           <div class="desc">Um funil unificado. O agente qualifica, classifica e move o lead automaticamente.</div>
+          <div class="mini" aria-hidden="true">
+            <div class="r"><em>Novos</em><span><b style="width:100%"></b></span><u>128</u></div>
+            <div class="r"><em>Qualificados</em><span><b style="width:56%"></b></span><u>72</u></div>
+            <div class="r"><em>Reunião</em><span><b style="width:22%"></b></span><u>28</u></div>
+          </div>
           <div class="chips"><b>qualifica</b><b>classifica</b><b>RBAC</b></div>
         </div>
       </div>
@@ -580,9 +596,9 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   <section class="how wrap" id="como">
     <div class="sec-head" style="padding-bottom:clamp(18px,3vw,34px)"><h2 class="rv">Como a Jazz entra.</h2></div>
     <div class="steps">
-      <div class="step rv"><span class="n pix">01</span><h3>Entendemos a sua operação.</h3><p>Uma conversa de 15 minutos para mapear o seu processo, os gargalos e onde há mais custo a reduzir.</p><div class="tag">// diagnóstico</div></div>
-      <div class="step rv d1"><span class="n pix">02</span><h3>Montamos o software sob medida.</h3><p>CRM, automações e atendimento — apenas o que o seu caso exige, integrado às suas ferramentas. Você aprova antes de entrar no ar.</p><div class="tag">// sob medida</div></div>
-      <div class="step rv d2"><span class="n pix">03</span><h3>Sua operação passa a render.</h3><p>O sistema opera de forma autônoma, no seu processo. Você acompanha os resultados: menos esforço, mais lucro.</p><div class="tag">// no ar</div></div>
+      <div class="step rv"><span class="n pix">01</span><h3>Afinamos com a sua operação.</h3><p>Uma conversa de 15 minutos para mapear o seu processo, os gargalos e onde há mais custo a reduzir.</p><div class="tag">// afinar</div></div>
+      <div class="step rv d1"><span class="n pix">02</span><h3>Compomos o software sob medida.</h3><p>CRM, automações e atendimento — apenas o que o seu caso exige, integrado às suas ferramentas. Você aprova antes de entrar no ar.</p><div class="tag">// compor</div></div>
+      <div class="step rv d2"><span class="n pix">03</span><h3>A orquestra toca sozinha.</h3><p>O sistema opera de forma autônoma, no seu processo. Você acompanha os resultados: menos esforço, mais lucro.</p><div class="tag">// reger</div></div>
     </div>
   </section>
 
@@ -661,8 +677,8 @@ footer .meta{font-family:"JetBrains Mono";font-size:11.5px;color:var(--mut);marg
   /* boot: system log + progress */
   var fill=document.getElementById('bootfill'),pct=document.getElementById('bootpct'),boot=document.getElementById('boot'),blog=document.getElementById('blog');
   function setBoot(p){fill.style.right=(100-p)+'%';pct.textContent=Math.round(p)+'%';}
-  var BOOT=[['JAZZ.OS 1.1 — inicializando',''],['inicializando os agentes','ok'],['ativando atendimento por voz','ok'],
-    ['conectando WhatsApp Business','ok'],['carregando CRM + agenda','ok'],['PRONTO. sistema no ar.','done']];
+  var BOOT=[['JAZZ.OS 1.1 — inicializando',''],['afinando os agentes','ok'],['ativando atendimento por voz','ok'],
+    ['conectando WhatsApp Business','ok'],['carregando CRM + agenda','ok'],['PRONTO. a orquestra está no ar.','done']];
   function paintLog(n){var h='';for(var i=0;i<n;i++){var L=BOOT[i];
     if(L[1]==='done')h+='<div class="done">'+L[0]+'</div>';
     else if(L[1]==='ok')h+='<div>&gt; '+L[0]+' ......... <span class="ok">ok</span></div>';
